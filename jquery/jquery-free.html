@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>如何做到 jQuery-free？ -- JavaScript 标准参考教程（alpha）</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/toc.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+<body>
+
+<header class="top-bar" id="header">
+
+<div class="fixed">
+
+<nav class="top-bar">
+<ul>
+<!-- Title Area -->
+	<li class="name has-dropdown">
+	<h1><a href="/">JavaScript 标准参考教程（alpha） </a></h1>
+		<ul class="dropdown">
+			
+			<li><a href="/#introduction">导论</a></li>
+			
+			<li><a href="/#grammar">语法</a></li>
+			
+			<li><a href="/#stdlib">标准库</a></li>
+			
+			<li><a href="/#oop">面向对象编程</a></li>
+			
+			<li><a href="/#advanced">语法专题</a></li>
+			
+			<li><a href="/#dom">DOM模型</a></li>
+			
+			<li><a href="/#bom">浏览器环境</a></li>
+			
+			<li><a href="/#htmlapi">Web API</a></li>
+			
+		</ul>
+	</li>
+</ul>
+
+<section>
+
+
+<ul class="left">
+<li class="divider"></li>
+<li class="has-dropdown"><a class="active" href="#"> jQuery </a><ul class="dropdown">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/jquery/basic.html">jQuery概述</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/jquery/deferred.html">jQuery.Deferred对象</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="active"><a href="#">如何做到 jQuery-free？</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/jquery/plugin.html">jQuery插件开发</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/jquery/utility.html">jQuery工具方法</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul></li>
+<li class="divider"></li>
+<li class="has-dropdown nav-3"><a href="#"> 如何做到 jQuery-free？</a><ul class="dropdown">
+</ul></li>
+</ul>
+
+
+<ul class="right">
+	<li class="divider"></li>
+	<li>
+		<a href="https://github.com/ruanyf/jstutorial" target="_blank">GitHub <i class="foundicon-edit"></i></a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">TOP <i class="foundicon-up-arrow"></i></a>
+	</li>
+</ul>
+
+</section>
+
+</nav>  
+</div>
+</header>
+
+
+<article class="bookPage">
+
+  <div class="row">
+    <div class="twelve columns">
+
+<h1> 如何做到 jQuery-free？ </h1>
+
+<aside class="right"><p>来自<a href="/">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p></aside>
+
+<div id="toc" class="panel callout radius">目录</div>
+
+
+<h2 id="概述">概述</h2>
+
+<p>jQuery是最流行的JavaScript工具库。据<a href="http://w3techs.com/technologies/details/js-jquery/all/all">统计</a>，目前全世界57.3%的网站使用它。也就是说，10个网站里面，有6个使用jQuery。如果只考察使用工具库的网站，这个比例就会上升到惊人的91.7%。</p>
+
+<p>jQuery如此受欢迎，以至于有被滥用的趋势。许多开发者不管什么样的项目，都一股脑使用jQuery。但是，jQuery本质只是一个中间层，提供一套统一易用的DOM操作接口，消除浏览器之间的差异。多了这一层中间层，操作的性能和效率多多少少会打一些折扣。</p>
+
+<p>2006年，jQuery诞生的时候，主要是为了解决IE6与标准的不兼容问题。如今的<a href="http://en.wikipedia.org/wiki/Usage_share_of_web_browsers">情况</a>已经发生了很大的变化。IE的市场份额不断下降，以ECMAScript为基础的JavaScript标准语法，正得到越来越广泛的支持，不同浏览器对标准的支持越来越好、越来越趋同。开发者直接使用JavaScript标准语法，就能同时在各大浏览器运行，不再需要通过jQuery获取兼容性。</p>
+
+<p>另一方面，jQuery臃肿的<a href="http://mathiasbynens.be/demo/jquery-size">体积</a>也让人头痛不已。jQuery 2.0的原始大小为235KB，优化后为81KB；如果是支持IE6、7、8的jQuery 1.8.3，原始大小为261KB，优化后为91KB。即使有CDN，浏览器加载这样大小的脚本，也会产生不小的开销。</p>
+
+<p>所以，对于一些不需要支持老式浏览器的小型项目来说，不使用jQuery，直接使用DOM原生接口，可能是更好的选择。开发者有必要了解，jQuery的一些常用操作所对应的DOM写法。而且，理解jQuery背后的原理，会帮助你更好地使用jQuery。要知道有一种极端的说法是，如果你不理解一样东西，就不要使用它。</p>
+
+<p>下面就探讨如何用JavaScript标准语法，取代jQuery的一些主要功能，做到jQuery-free。</p>
+
+<h2 id="选取dom元素">选取DOM元素</h2>
+
+<p>jQuery的核心是通过各种选择器，选中DOM元素，可以用querySelectorAll方法模拟这个功能。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">$</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span></code></pre></figure>
+
+<p>这里需要注意的是，querySelectorAll方法返回的是NodeList对象，它很像数组（有数字索引和length属性），但不是数组，不能使用pop、push等数组特有方法。如果有需要，可以考虑将Nodelist对象转为数组。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">myList</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">myNodeList</span><span class="p">);</span></code></pre></figure>
+
+<h2 id="dom操作">DOM操作</h2>
+
+<p>DOM本身就具有很丰富的操作方法，可以取代jQuery提供的操作方法。</p>
+
+<p>获取父元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// jQuery写法</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"#elementID"</span><span class="p">).</span><span class="nx">parent</span><span class="p">()</span>
+
+<span class="c1">// DOM写法</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"elementID"</span><span class="p">).</span><span class="nx">parentNode</span></code></pre></figure>
+
+<p>获取下一个同级元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// jQuery写法</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"#elementID"</span><span class="p">).</span><span class="nx">next</span><span class="p">()</span>
+
+<span class="c1">// DOM写法</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"elementID"</span><span class="p">).</span><span class="nx">nextSibling</span></code></pre></figure>
+
+<p>尾部追加DOM元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// jQuery写法</span>
+<span class="nx">$</span><span class="p">(</span><span class="nx">parent</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">child</span><span class="p">));</span>
+
+<span class="c1">// DOM写法</span>
+<span class="nx">parent</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span></code></pre></figure>
+
+<p>头部插入DOM元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// jQuery写法</span>
+<span class="nx">$</span><span class="p">(</span><span class="nx">parent</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">child</span><span class="p">));</span>
+
+<span class="c1">// DOM写法</span>
+<span class="nx">parent</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">child</span><span class="p">,</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></code></pre></figure>
+
+<p>生成DOM元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// jQuery写法</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"&lt;p&gt;"</span><span class="p">)</span>
+
+<span class="c1">// DOM写法</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"p"</span><span class="p">)</span></code></pre></figure>
+
+<p>删除DOM元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// jQuery写法</span>
+<span class="nx">$</span><span class="p">(</span><span class="nx">child</span><span class="p">).</span><span class="nx">remove</span><span class="p">()</span>
+
+<span class="c1">// DOM写法</span>
+<span class="nx">child</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span></code></pre></figure>
+
+<p>清空子元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// jQuery写法</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"#elementID"</span><span class="p">).</span><span class="nx">empty</span><span class="p">()</span>
+
+<span class="c1">// DOM写法</span>
+<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"elementID"</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">)</span> <span class="nx">element</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">);</span></code></pre></figure>
+
+<p>检查是否有子元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// jQuery写法</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#elementID"</span><span class="p">).</span><span class="nx">is</span><span class="p">(</span><span class="s2">":empty"</span><span class="p">)){}</span>
+
+<span class="c1">// DOM写法</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"elementID"</span><span class="p">).</span><span class="nx">hasChildNodes</span><span class="p">()){}</span></code></pre></figure>
+
+<p>克隆元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// jQuery写法</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"#elementID"</span><span class="p">).</span><span class="nx">clone</span><span class="p">()</span>
+
+<span class="c1">// DOM写法</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"elementID"</span><span class="p">).</span><span class="nx">cloned</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span></code></pre></figure>
+
+<h2 id="事件的监听">事件的监听</h2>
+
+<p>jQuery使用on方法，监听事件和绑定回调函数。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'button'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">ajax</span><span class="p">(</span> <span class="p">...</span> <span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>完全可以自己定义on方法，将它指向addEventListener方法。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Element</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">on</span> <span class="o">=</span> <span class="nx">Element</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">;</span></code></pre></figure>
+
+<p>为了使用方便，可以在NodeList对象上也部署这个方法。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">NodeList</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">on</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+
+	<span class="p">[][</span><span class="s1">'forEach'</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">el</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+
+<span class="p">};</span></code></pre></figure>
+
+<p>取消事件绑定的off方法，也可以自己定义。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Element</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">off</span> <span class="o">=</span> <span class="nx">Element</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">;</span></code></pre></figure>
+
+<h2 id="事件的触发">事件的触发</h2>
+
+<p>jQuery的trigger方法则需要单独部署，相对复杂一些。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Element</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">trigger</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">'HTMLEvents'</span><span class="p">);</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span> <span class="o">||</span> <span class="p">{};</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">eventName</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>在NodeList对象上也部署这个方法。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">NodeList</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">trigger</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+
+	<span class="p">[][</span><span class="s1">'forEach'</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+
+		<span class="nx">el</span><span class="p">[</span><span class="s1">'trigger'</span><span class="p">](</span><span class="nx">event</span><span class="p">);</span>
+
+	<span class="p">});</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">};</span></code></pre></figure>
+
+<h2 id="documentready">$(document).ready</h2>
+
+<p>DOM加载完成，会触发DOMContentLoaded事件，等同于jQuery的$(document).ready方法。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"DOMContentLoaded"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c1">// ...</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>不过，目前的最佳实践，是将JavaScript脚本文件都放在页面底部加载。这样的话，其实$(document).ready方法（可以简写为$(function)）已经不必要了，因为等到运行的时候，DOM对象已经生成了。</p>
+
+<h2 id="attr方法">attr方法</h2>
+
+<p>jQuery使用attr方法，读写网页元素的属性。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">"#picture"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"src"</span><span class="p">,</span> <span class="s2">"http://url/to/image"</span><span class="p">)</span></code></pre></figure>
+
+<p>DOM提供getAttribute和setAttribute方法读写元素属性。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">imgElement</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"src"</span><span class="p">,</span> <span class="s2">"http://url/to/image"</span><span class="p">)</span></code></pre></figure>
+
+<p>DOM还允许直接读取属性值，写法要简洁许多。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">imgElement</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"http://url/to/image"</span><span class="p">;</span></code></pre></figure>
+
+<blockquote>
+  <p>需要注意的是，文本框元素（input）的this.value返回的是输入框中的值，链接元素（a标签）的this.href返回的是绝对URL。如果需要用到这两个网页元素的属性准确值，可以用this.getAttribute(‘value’)和this.getAttibute(‘href’)。</p>
+</blockquote>
+
+<h2 id="addclass方法">addClass方法</h2>
+
+<p>jQuery的addClass方法，用于为DOM元素添加一个class。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'body'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'hasJS'</span><span class="p">);</span></code></pre></figure>
+
+<p>DOM元素本身有一个可读写的className属性，可以用来操作class。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">'hasJS'</span><span class="p">;</span>
+
+<span class="c1">// or</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">className</span> <span class="o">+=</span> <span class="s1">' hasJS'</span><span class="p">;</span></code></pre></figure>
+
+<p>HTML 5还提供一个classList对象，功能更强大（IE 9不支持）。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'hasJS'</span><span class="p">);</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">'hasJS'</span><span class="p">);</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s1">'hasJS'</span><span class="p">);</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">'hasJS'</span><span class="p">);</span></code></pre></figure>
+
+<h2 id="css">CSS</h2>
+
+<p>jQuery的css方法，用来设置网页元素的样式。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="nx">node</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span> <span class="s2">"color"</span><span class="p">,</span> <span class="s2">"red"</span> <span class="p">);</span></code></pre></figure>
+
+<p>DOM元素有一个style属性，可以直接操作。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">"red”;;
+
+// or
+
+element.style.cssText += 'color:red';</span></code></pre></figure>
+
+<h2 id="数据储存">数据储存</h2>
+
+<p>jQuery对象可以储存数据。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">"body"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"foo"</span><span class="p">,</span> <span class="mi">52</span><span class="p">);</span></code></pre></figure>
+
+<p>HTML 5有一个dataset对象，也有类似的功能（IE 10不支持），不过只能保存字符串。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">element</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+
+<span class="nx">element</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">score</span> <span class="o">=</span> <span class="nx">score</span><span class="p">;</span></code></pre></figure>
+
+<h2 id="ajax">Ajax</h2>
+
+<p>jQuery的ajax方法，用于异步操作。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+	<span class="na">type</span><span class="p">:</span> <span class="s2">"POST"</span><span class="p">,</span>
+	<span class="na">url</span><span class="p">:</span> <span class="s2">"some.php"</span><span class="p">,</span>
+	<span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span> <span class="na">location</span><span class="p">:</span> <span class="s2">"Boston"</span> <span class="p">}</span>
+<span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">msg</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nx">alert</span><span class="p">(</span> <span class="s2">"Data Saved: "</span> <span class="o">+</span> <span class="nx">msg</span> <span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>我们自定义一个ajax函数，简单模拟jQuery的ajax方法。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">ajax</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">opts</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+    <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">completed</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="nx">completed</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">){</span>
+                <span class="nx">opts</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">);</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="nx">opts</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">opts</span><span class="p">.</span><span class="nx">method</span><span class="p">,</span> <span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">opts</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>使用的时候，除了网址，还需要传入一个自己构造的option对象。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">ajax</span><span class="p">(</span><span class="s1">'/foo'</span><span class="p">,</span> <span class="p">{</span> 
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+    <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></figure>
+
+<h2 id="动画">动画</h2>
+
+<p>jQuery的animate方法，用于生成动画效果。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$foo</span><span class="p">.</span><span class="nx">animate</span><span class="p">(</span><span class="s1">'slow'</span><span class="p">,</span> <span class="p">{</span> <span class="na">x</span><span class="p">:</span> <span class="s1">'+=10px'</span> <span class="p">})</span></code></pre></figure>
+
+<p>jQuery的动画效果，很大部分基于DOM。但是目前，CSS 3的动画远比DOM强大，所以可以把动画效果写进CSS，然后通过操作DOM元素的class，来展示动画。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">foo</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'animate'</span><span class="p">)</span></code></pre></figure>
+
+<p>如果需要对动画使用回调函数，CSS 3也定义了相应的事件。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">el</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"webkitTransitionEnd"</span><span class="p">,</span> <span class="nx">transitionEnded</span><span class="p">);</span>
+
+<span class="nx">el</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"transitionend"</span><span class="p">,</span> <span class="nx">transitionEnded</span><span class="p">);</span></code></pre></figure>
+
+<h2 id="替代方案">替代方案</h2>
+
+<p>由于jQuery体积过大，替代方案层出不穷。</p>
+
+<p>其中，最有名的是<a href="http://zeptojs.com/">zepto.js</a>。它的设计目标是以最小的体积，做到最大兼容jQuery的API。它的1.0版的原始大小是55KB，优化后是29KB，gzip压缩后为10KB。</p>
+
+<p>如果不求最大兼容，只希望模拟jQuery的基本功能。那么，<a href="https://github.com/remy/min.js">min.js</a>优化后只有200字节，而<a href="https://github.com/lelandrichardson/dolla">dolla</a>优化后是1.7KB。</p>
+
+<p>此外，jQuery本身也采用模块设计，可以只选择使用自己需要的模块。具体做法参见jQuery的<a href="https://github.com/jquery/jquery">github网站</a>，或者使用专用的<a href="http://projects.jga.me/jquery-builder/">Web界面</a>。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ul>
+  <li>Remy Sharp，<a href="http://remysharp.com/2013/04/19/i-know-jquery-now-what/">I know jQuery. Now what?</a></li>
+  <li>Hemanth.HM，<a href="http://h3manth.com/new/blog/2013/power-of-vanilla-js/">Power of Vanilla JS</a></li>
+  <li>Burke Holland, <a href="http://flippinawesome.org/2013/05/06/5-things-you-should-stop-doing-with-jquery/">5 Things You Should Stop Doing With jQuery</a></li>
+  <li>Burke Holland, <a href="http://tech.pro/tutorial/1385/out-growing-jquery">Out-Growing jQuery</a></li>
+  <li>Nicolas Bevacqua, <a href="http://flippinawesome.org/2013/06/17/uncovering-the-native-dom-api/">Uncovering the Native DOM API</a></li>
+  <li>Pony Foo, <a href="http://blog.ponyfoo.com/2013/07/09/getting-over-jquery">Getting Over jQuery</a></li>
+  <li>Hemanth.HM, <a href="http://h3manth.com/notes/jq-cs.html">JavaScript vs Jquery+CoffeeScript</a></li>
+</ul>
+
+
+</article>
+
+<div class="row">
+<div class="twelve columns">
+
+<h2>留言</h2>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jstutorial'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+</div>
+</div>
+
+<footer>
+<div class="row">
+<div class="twelve columns">
+	<p><a href="/introduction/license.html">版权声明</a> | last modified on 2013-10-10 </p>
+</div>
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43771063-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+

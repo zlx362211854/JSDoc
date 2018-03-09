@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>属性描述对象 -- JavaScript 标准参考教程（alpha）</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/toc.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+<body>
+
+<header class="top-bar" id="header">
+
+<div class="fixed">
+
+<nav class="top-bar">
+<ul>
+<!-- Title Area -->
+	<li class="name has-dropdown">
+	<h1><a href="/">JavaScript 标准参考教程（alpha） </a></h1>
+		<ul class="dropdown">
+			
+			<li><a href="/#introduction">导论</a></li>
+			
+			<li><a href="/#grammar">语法</a></li>
+			
+			<li><a href="/#stdlib">标准库</a></li>
+			
+			<li><a href="/#oop">面向对象编程</a></li>
+			
+			<li><a href="/#advanced">语法专题</a></li>
+			
+			<li><a href="/#dom">DOM模型</a></li>
+			
+			<li><a href="/#bom">浏览器环境</a></li>
+			
+			<li><a href="/#htmlapi">Web API</a></li>
+			
+		</ul>
+	</li>
+</ul>
+
+<section>
+
+
+<ul class="left">
+<li class="divider"></li>
+<li class="has-dropdown"><a class="active" href="#"> 标准库 </a><ul class="dropdown">
+
+
+
+
+
+
+
+
+
+<li><a href="/stdlib/array.html">Array 对象</a></li>
+
+
+
+
+
+<li><a href="/stdlib/arraybuffer.html">二进制数组</a></li>
+
+
+
+
+
+
+
+
+
+<li class="active"><a href="#">属性描述对象</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/stdlib/date.html">Date对象</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/stdlib/json.html">JSON对象</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/stdlib/math.html">Math对象</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/stdlib/number.html">Number对象</a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="/stdlib/object.html">Object对象</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/stdlib/regexp.html">RegExp对象</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/stdlib/string.html">String对象</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/stdlib/wrapper.html">包装对象</a></li>
+
+
+
+</ul></li>
+<li class="divider"></li>
+<li class="has-dropdown nav-3"><a href="#"> 属性描述对象</a><ul class="dropdown">
+</ul></li>
+</ul>
+
+
+<ul class="right">
+	<li class="divider"></li>
+	<li>
+		<a href="https://github.com/ruanyf/jstutorial" target="_blank">GitHub <i class="foundicon-edit"></i></a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">TOP <i class="foundicon-up-arrow"></i></a>
+	</li>
+</ul>
+
+</section>
+
+</nav>  
+</div>
+</header>
+
+
+<article class="bookPage">
+
+  <div class="row">
+    <div class="twelve columns">
+
+<h1> 属性描述对象 </h1>
+
+<aside class="right"><p>来自<a href="/">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p></aside>
+
+<div id="toc" class="panel callout radius">目录</div>
+
+
+<h2 id="概述">概述</h2>
+
+<p>JavaScript 提供了一个内部数据结构，用来描述对象的属性，控制它的行为，比如该属性是否可写、可遍历等等。这个内部数据结构称为“属性描述对象”（attributes object）。每个属性都有自己对应的属性描述对象，保存该属性的一些元信息。</p>
+
+<p>下面是属性描述对象的一个例子。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">value</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+  <span class="nx">writable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nx">enumerable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">configurable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="kd">get</span><span class="p">:</span> <span class="kc">undefined</span><span class="p">,</span>
+  <span class="kd">set</span><span class="p">:</span> <span class="kc">undefined</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>属性描述对象提供6个元属性。</p>
+
+<p>（1）<code class="highlighter-rouge">value</code></p>
+
+<p><code class="highlighter-rouge">value</code>是该属性的属性值，默认为<code class="highlighter-rouge">undefined</code>。</p>
+
+<p>（2）<code class="highlighter-rouge">writable</code></p>
+
+<p><code class="highlighter-rouge">writable</code>是一个布尔值，表示属性值（value）是否可改变（即是否可写），默认为<code class="highlighter-rouge">true</code>。</p>
+
+<p>（3）<code class="highlighter-rouge">enumerable</code></p>
+
+<p><code class="highlighter-rouge">enumerable</code>是一个布尔值，表示该属性是否可遍历，默认为<code class="highlighter-rouge">true</code>。如果设为<code class="highlighter-rouge">false</code>，会使得某些操作（比如<code class="highlighter-rouge">for...in</code>循环、<code class="highlighter-rouge">Object.keys()</code>）跳过该属性。</p>
+
+<p>（4）<code class="highlighter-rouge">configurable</code></p>
+
+<p><code class="highlighter-rouge">configurable</code>是一个布尔值，表示可配置性，默认为<code class="highlighter-rouge">true</code>。如果设为<code class="highlighter-rouge">false</code>，将阻止某些操作改写该属性，比如无法删除该属性，也不得改变该属性的属性描述对象（<code class="highlighter-rouge">value</code>属性除外）。也就是说，<code class="highlighter-rouge">configurable</code>属性控制了属性描述对象的可写性。</p>
+
+<p>（5）<code class="highlighter-rouge">get</code></p>
+
+<p><code class="highlighter-rouge">get</code>是一个函数，表示该属性的取值函数（getter），默认为<code class="highlighter-rouge">undefined</code>。</p>
+
+<p>（6）<code class="highlighter-rouge">set</code></p>
+
+<p><code class="highlighter-rouge">set</code>是一个函数，表示该属性的存值函数（setter），默认为<code class="highlighter-rouge">undefined</code>。</p>
+
+<h2 id="objectgetownpropertydescriptor">Object.getOwnPropertyDescriptor()</h2>
+
+<p><code class="highlighter-rouge">Object.getOwnPropertyDescriptor</code>方法可以获取属性描述对象。它的第一个参数是一个对象，第二个参数是一个字符串，对应该对象的某个属性名。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">p</span><span class="p">:</span> <span class="s1">'a'</span> <span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">)</span>
+<span class="c1">// Object { value: "a",</span>
+<span class="c1">//   writable: true,</span>
+<span class="c1">//   enumerable: true,</span>
+<span class="c1">//   configurable: true</span>
+<span class="c1">// }</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">Object.getOwnPropertyDescriptor</code>方法获取<code class="highlighter-rouge">obj.p</code>的属性描述对象。</p>
+
+<p>注意，<code class="highlighter-rouge">Object.getOwnPropertyDescriptor</code>方法只能用于对象自身的属性，不能用于继承的属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">p</span><span class="p">:</span> <span class="s1">'a'</span> <span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'toString'</span><span class="p">)</span>
+<span class="c1">// undefined</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">toString</code>是<code class="highlighter-rouge">Obj</code>对象继承的属性，<code class="highlighter-rouge">Object.getOwnPropertyDescriptor</code>无法获取。</p>
+
+<h2 id="objectgetownpropertynames">Object.getOwnPropertyNames()</h2>
+
+<p><code class="highlighter-rouge">Object.getOwnPropertyNames</code>方法返回一个数组，成员是参数对象自身的全部属性的属性名，不管该属性是否可遍历。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperties</span><span class="p">({},</span> <span class="p">{</span>
+  <span class="na">p1</span><span class="p">:</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">enumerable</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+  <span class="na">p2</span><span class="p">:</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+<span class="c1">// ["p1", "p2"]</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj.p1</code>是可遍历的，<code class="highlighter-rouge">obj.p2</code>是不可遍历的。<code class="highlighter-rouge">Object.getOwnPropertyNames</code>会将它们都返回。</p>
+
+<p>这跟<code class="highlighter-rouge">Object.keys</code>的行为不同，<code class="highlighter-rouge">Object.keys</code>只返回对象自身的可遍历属性的全部属性名。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">([])</span> <span class="c1">// []</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">([])</span> <span class="c1">// [ 'length' ]</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="c1">// []</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span>
+<span class="c1">// ['hasOwnProperty',</span>
+<span class="c1">//  'valueOf',</span>
+<span class="c1">//  'constructor',</span>
+<span class="c1">//  'toLocaleString',</span>
+<span class="c1">//  'isPrototypeOf',</span>
+<span class="c1">//  'propertyIsEnumerable',</span>
+<span class="c1">//  'toString']</span>
+</code></pre></div></div>
+
+<p>上面代码中，数组自身的<code class="highlighter-rouge">length</code>属性是不可遍历的，<code class="highlighter-rouge">Object.keys</code>不会返回该属性。第二个例子的<code class="highlighter-rouge">Object.prototype</code>也是一个对象，所有实例对象都会继承它，它自身的属性都是不可遍历的。</p>
+
+<h2 id="objectdefinepropertyobjectdefineproperties">Object.defineProperty()，Object.defineProperties()</h2>
+
+<p><code class="highlighter-rouge">Object.defineProperty</code>方法允许通过属性描述对象，定义或修改一个属性，然后返回修改后的对象，它的用法如下。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">propertyName</span><span class="p">,</span> <span class="nx">attributesObject</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Object.defineProperty</code>方法接受三个参数，依次如下。</p>
+
+<ul>
+  <li>属性所在的对象</li>
+  <li>属性名（它应该是一个字符串）</li>
+  <li>属性描述对象</li>
+</ul>
+
+<p>举例来说，定义<code class="highlighter-rouge">obj.p</code>可以写成下面这样。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">({},</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">enumerable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">configurable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// 123</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="mi">246</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// 123</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">Object.defineProperty</code>方法定义了<code class="highlighter-rouge">obj.p</code>属性。由于属性描述对象的<code class="highlighter-rouge">writable</code>属性为<code class="highlighter-rouge">false</code>，所以<code class="highlighter-rouge">obj.p</code>属性不可写。注意，这里的<code class="highlighter-rouge">Object.defineProperty</code>方法的第一个参数是<code class="highlighter-rouge">{}</code>（一个新建的空对象），<code class="highlighter-rouge">p</code>属性直接定义在这个空对象上面，然后返回这个对象，这是<code class="highlighter-rouge">Object.defineProperty</code>的常见写法。</p>
+
+<p>如果属性已经存在，<code class="highlighter-rouge">Object.defineProperty</code>方法相当于更新该属性的属性描述对象。</p>
+
+<p>如果一次性定义或修改多个属性，可以使用<code class="highlighter-rouge">Object.defineProperties</code>方法。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperties</span><span class="p">({},</span> <span class="p">{</span>
+  <span class="na">p1</span><span class="p">:</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="na">enumerable</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+  <span class="na">p2</span><span class="p">:</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="s1">'abc'</span><span class="p">,</span> <span class="na">enumerable</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+  <span class="na">p3</span><span class="p">:</span> <span class="p">{</span> <span class="na">get</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">p1</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">p2</span> <span class="p">},</span>
+    <span class="na">enumerable</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+    <span class="na">configurable</span><span class="p">:</span><span class="kc">true</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p1</span> <span class="c1">// 123</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p2</span> <span class="c1">// "abc"</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p3</span> <span class="c1">// "123abc"</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">Object.defineProperties</code>同时定义了<code class="highlighter-rouge">obj</code>对象的三个属性。其中，<code class="highlighter-rouge">p3</code>属性定义了取值函数<code class="highlighter-rouge">get</code>，即每次读取该属性，都会调用这个取值函数。</p>
+
+<p>注意，一旦定义了取值函数<code class="highlighter-rouge">get</code>（或存值函数<code class="highlighter-rouge">set</code>），就不能将<code class="highlighter-rouge">writable</code>属性设为<code class="highlighter-rouge">true</code>，或者同时定义<code class="highlighter-rouge">value</code>属性，否则会报错。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+  <span class="na">get</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">456</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">});</span>
+<span class="c1">// TypeError: Invalid property.</span>
+<span class="c1">// A property cannot both have accessors and be writable or have a value</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">get</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">456</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">});</span>
+<span class="c1">// TypeError: Invalid property descriptor.</span>
+<span class="c1">// Cannot both specify accessors and a value or writable attribute</span>
+</code></pre></div></div>
+
+<p>上面代码中，同时定义了<code class="highlighter-rouge">get</code>属性和<code class="highlighter-rouge">value</code>属性，以及将<code class="highlighter-rouge">writable</code>属性设为<code class="highlighter-rouge">true</code>，就会报错。</p>
+
+<p><code class="highlighter-rouge">Object.defineProperty()</code>和<code class="highlighter-rouge">Object.defineProperties()</code>的第三个参数，是一个属性对象。它的<code class="highlighter-rouge">writable</code>、<code class="highlighter-rouge">configurable</code>、<code class="highlighter-rouge">enumerable</code>这三个属性的默认值都为<code class="highlighter-rouge">false</code>。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="p">{});</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">)</span>
+<span class="c1">// {</span>
+<span class="c1">//   value: undefined,</span>
+<span class="c1">//   writable: false,</span>
+<span class="c1">//   enumerable: false,</span>
+<span class="c1">//   configurable: falsee</span>
+<span class="c1">// }</span>
+</code></pre></div></div>
+
+<p>上面代码中，定义<code class="highlighter-rouge">obj.p</code>时用了一个空的属性描述对象，就可以看到各个元属性的默认值。</p>
+
+<h2 id="objectprototypepropertyisenumerable">Object.prototype.propertyIsEnumerable()</h2>
+
+<p>实例对象的<code class="highlighter-rouge">propertyIsEnumerable</code>方法返回一个布尔值，用来判断某个属性是否可遍历。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s1">'p'</span><span class="p">)</span> <span class="c1">// true</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s1">'toString'</span><span class="p">)</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj.p</code>是可遍历的，而继承自原型对象的<code class="highlighter-rouge">obj.toString</code>属性是不可遍历的。</p>
+
+<h2 id="元属性">元属性</h2>
+
+<p>属性描述对象的各个属性称为“元属性”，因为它们可以看作是控制属性的属性。</p>
+
+<h3 id="value">value</h3>
+
+<p><code class="highlighter-rouge">value</code>属性是目标属性的值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">).</span><span class="nx">value</span>
+<span class="c1">// 123</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="mi">246</span> <span class="p">});</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// 246</span>
+</code></pre></div></div>
+
+<p>上面代码是通过<code class="highlighter-rouge">value</code>属性，读取或改写<code class="highlighter-rouge">obj.p</code>的例子。</p>
+
+<h3 id="writable">writable</h3>
+
+<p><code class="highlighter-rouge">writable</code>属性是一个布尔值，决定了目标属性的值（value）是否可以被改变。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">37</span><span class="p">,</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">a</span> <span class="c1">// 37</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">a</span> <span class="c1">// 37</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj.a</code>的<code class="highlighter-rouge">writable</code>属性是<code class="highlighter-rouge">false</code>。然后，改变<code class="highlighter-rouge">obj.a</code>的值，不会有任何效果。</p>
+
+<p>注意，正常模式下，对<code class="highlighter-rouge">writable</code>为<code class="highlighter-rouge">false</code>的属性赋值不会报错，只会默默失败。但是，严格模式下会报错，即使对<code class="highlighter-rouge">a</code>属性重新赋予一个同样的值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'use strict'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">37</span><span class="p">,</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">37</span><span class="p">;</span>
+<span class="c1">// Uncaught TypeError: Cannot assign to read only property 'a' of object</span>
+</code></pre></div></div>
+
+<p>上面代码是严格模式，对<code class="highlighter-rouge">obj.a</code>任何赋值行为都会报错。</p>
+
+<p>如果原型对象的某个属性的<code class="highlighter-rouge">writable</code>为<code class="highlighter-rouge">false</code>，那么子对象将无法自定义这个属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">({},</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">,</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">proto</span><span class="p">);</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="s1">'b'</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span> <span class="c1">// 'a'</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">proto</code>是原型对象，它的<code class="highlighter-rouge">foo</code>属性不可写。<code class="highlighter-rouge">obj</code>对象继承<code class="highlighter-rouge">proto</code>，也不可以再自定义这个属性了。如果是严格模式，这样做还会抛出一个错误。</p>
+
+<p>但是，有一个规避方法，就是通过覆盖属性描述对象，绕过这个限制。原因是这种情况下，原型链会被完全忽视。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">({},</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">,</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">proto</span><span class="p">);</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="s1">'b'</span>
+<span class="p">});</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span> <span class="c1">// "b"</span>
+</code></pre></div></div>
+
+<h3 id="enumerable">enumerable</h3>
+
+<p><code class="highlighter-rouge">enumerable</code>（可遍历性）返回一个布尔值，表示目标属性是否可遍历。</p>
+
+<p>JavaScript 的早期版本，<code class="highlighter-rouge">for...in</code>循环是基于<code class="highlighter-rouge">in</code>运算符的。我们知道，<code class="highlighter-rouge">in</code>运算符不管某个属性是对象自身的还是继承的，都会返回<code class="highlighter-rouge">true</code>。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="s1">'toString'</span> <span class="k">in</span> <span class="nx">obj</span> <span class="c1">// true</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">toString</code>不是<code class="highlighter-rouge">obj</code>对象自身的属性，但是<code class="highlighter-rouge">in</code>运算符也返回<code class="highlighter-rouge">true</code>，这导致了<code class="highlighter-rouge">toString</code>属性也会被<code class="highlighter-rouge">for...in</code>循环遍历。</p>
+
+<p>这显然不太合理，后来就引入了“可遍历性”这个概念。只有可遍历的属性，才会被<code class="highlighter-rouge">for...in</code>循环遍历，同时还规定<code class="highlighter-rouge">toString</code>这一类实例对象继承的原生属性，都是不可遍历的，这样就保证了<code class="highlighter-rouge">for...in</code>循环的可用性。</p>
+
+<p>具体来说，如果一个属性的<code class="highlighter-rouge">enumerable</code>为<code class="highlighter-rouge">false</code>，下面三个操作不会取到该属性。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">for..in</code>循环</li>
+  <li><code class="highlighter-rouge">Object.keys</code>方法</li>
+  <li><code class="highlighter-rouge">JSON.stringify</code>方法</li>
+</ul>
+
+<p>因此，<code class="highlighter-rouge">enumerable</code>可以用来设置“秘密”属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+  <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// 123</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// undefined</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>  <span class="c1">// []</span>
+<span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="c1">// "{a:1, b:2, c:3}"</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj.x</code>属性的<code class="highlighter-rouge">enumerable</code>为<code class="highlighter-rouge">false</code>，所以一般的遍历操作都无法获取该属性，使得它有点像“秘密”属性，但不是真正的私有属性，还是可以直接获取它的值。</p>
+
+<p>注意，<code class="highlighter-rouge">for...in</code>循环包括继承的属性，<code class="highlighter-rouge">Object.keys</code>方法不包括继承的属性。如果需要获取对象自身的所有属性，不管是否可遍历，可以使用<code class="highlighter-rouge">Object.getOwnPropertyNames</code>方法。</p>
+
+<p>另外，<code class="highlighter-rouge">JSON.stringify</code>方法会排除<code class="highlighter-rouge">enumerable</code>为<code class="highlighter-rouge">false</code>的属性，有时可以利用这一点。如果对象的 JSON 格式输出要排除某些属性，就可以把这些属性的<code class="highlighter-rouge">enumerable</code>设为<code class="highlighter-rouge">false</code>。</p>
+
+<h3 id="configurable">configurable</h3>
+
+<p><code class="highlighter-rouge">configurable</code>(可配置性）返回一个布尔值，决定了是否可以修改属性描述对象。也就是说，<code class="highlighter-rouge">configurable</code>为<code class="highlighter-rouge">false</code>时，<code class="highlighter-rouge">value</code>、<code class="highlighter-rouge">writable</code>、<code class="highlighter-rouge">enumerable</code>和<code class="highlighter-rouge">configurable</code>都不能被修改了。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">({},</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">configurable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span><span class="na">value</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="c1">// TypeError: Cannot redefine property: p</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span><span class="na">writable</span><span class="p">:</span> <span class="kc">true</span><span class="p">})</span>
+<span class="c1">// TypeError: Cannot redefine property: p</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span><span class="na">enumerable</span><span class="p">:</span> <span class="kc">true</span><span class="p">})</span>
+<span class="c1">// TypeError: Cannot redefine property: p</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span><span class="na">configurable</span><span class="p">:</span> <span class="kc">true</span><span class="p">})</span>
+<span class="c1">// TypeError: Cannot redefine property: p</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj.p</code>的<code class="highlighter-rouge">configurable</code>为<code class="highlighter-rouge">false</code>。然后，改动<code class="highlighter-rouge">value</code>、<code class="highlighter-rouge">writable</code>、<code class="highlighter-rouge">enumerable</code>、<code class="highlighter-rouge">configurable</code>，结果都报错。</p>
+
+<p>注意，<code class="highlighter-rouge">writable</code>只有在<code class="highlighter-rouge">false</code>改为<code class="highlighter-rouge">true</code>会报错，<code class="highlighter-rouge">true</code>改为<code class="highlighter-rouge">false</code>是允许的。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">({},</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">configurable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span><span class="na">writable</span><span class="p">:</span> <span class="kc">false</span><span class="p">})</span>
+<span class="c1">// 修改成功</span>
+</code></pre></div></div>
+
+<p>至于<code class="highlighter-rouge">value</code>，只要<code class="highlighter-rouge">writable</code>和<code class="highlighter-rouge">configurable</code>有一个为<code class="highlighter-rouge">true</code>，就允许改动。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">o1</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">({},</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">configurable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o1</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span><span class="na">value</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="c1">// 修改成功</span>
+
+<span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">({},</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">writable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">configurable</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o2</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span><span class="na">value</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="c1">// 修改成功</span>
+</code></pre></div></div>
+
+<p>另外，<code class="highlighter-rouge">configurable</code>为<code class="highlighter-rouge">false</code>时，直接目标属性赋值，不报错，但不会成功。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">({},</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">configurable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// 1</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj.p</code>的<code class="highlighter-rouge">configurable</code>为<code class="highlighter-rouge">false</code>，对<code class="highlighter-rouge">obj.p</code>赋值是不会生效的。如果是严格模式，还会报错。</p>
+
+<p>可配置性决定了目标属性是否可以被删除（delete）。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperties</span><span class="p">({},</span> <span class="p">{</span>
+  <span class="na">p1</span><span class="p">:</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">configurable</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+  <span class="na">p2</span><span class="p">:</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">configurable</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="k">delete</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">p1</span> <span class="c1">// true</span>
+<span class="k">delete</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">p2</span> <span class="c1">// false</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p1</span> <span class="c1">// undefined</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p2</span> <span class="c1">// 2</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj.p1</code>的<code class="highlighter-rouge">configurable</code>是<code class="highlighter-rouge">true</code>，所以可以被删除，<code class="highlighter-rouge">obj.p2</code>就无法删除。</p>
+
+<h2 id="存取器">存取器</h2>
+
+<p>除了直接定义以外，属性还可以用存取器（accessor）定义。其中，存值函数称为<code class="highlighter-rouge">setter</code>，使用属性描述对象的<code class="highlighter-rouge">set</code>属性；取值函数称为<code class="highlighter-rouge">getter</code>，使用属性描述对象的<code class="highlighter-rouge">get</code>属性。</p>
+
+<p>一旦对目标属性定义了存取器，那么存取的时候，都将执行对应的函数。利用这个功能，可以实现许多高级特性，比如某个属性禁止赋值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">({},</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">get</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'getter'</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="na">set</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'setter: '</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// "getter"</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="mi">123</span> <span class="c1">// "setter: 123"</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj.p</code>定义了<code class="highlighter-rouge">get</code>和<code class="highlighter-rouge">set</code>属性。<code class="highlighter-rouge">obj.p</code>取值时，就会调用<code class="highlighter-rouge">get</code>；赋值时，就会调用<code class="highlighter-rouge">set</code>。</p>
+
+<p>JavaScript 还提供了存取器的另一种写法。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nx">p</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'getter'</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="kd">set</span> <span class="nx">p</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'setter: '</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>上面的写法与定义属性描述对象是等价的，而且使用更广泛。</p>
+
+<p>注意，取值函数<code class="highlighter-rouge">get</code>不能接受参数，存值函数<code class="highlighter-rouge">set</code>只能接受一个参数（即属性的值）。</p>
+
+<p>存取器往往用于，属性的值依赖对象内部数据的场合。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span><span class="p">{</span>
+  <span class="na">$n</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="kd">get</span> <span class="nx">next</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$n</span><span class="o">++</span> <span class="p">},</span>
+  <span class="kd">set</span> <span class="nx">next</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$n</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">$n</span> <span class="o">=</span> <span class="nx">n</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'新的值必须大于当前值'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">next</span> <span class="c1">// 5</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">next</span> <span class="c1">// 10</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="c1">// Uncaught Error: 新的值必须大于当前值</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">next</code>属性的存值函数和取值函数，都依赖于内部属性<code class="highlighter-rouge">$n</code>。</p>
+
+<h2 id="对象的拷贝">对象的拷贝</h2>
+
+<p>有时，我们需要将一个对象的所有属性，拷贝到另一个对象，可以用下面的方法实现。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="k">from</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">property</span> <span class="k">in</span> <span class="k">from</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">to</span><span class="p">[</span><span class="nx">property</span><span class="p">]</span> <span class="o">=</span> <span class="k">from</span><span class="p">[</span><span class="nx">property</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">to</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">extend</span><span class="p">({},</span> <span class="p">{</span>
+  <span class="na">a</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">})</span>
+<span class="c1">// {a: 1}</span>
+</code></pre></div></div>
+
+<p>上面这个方法的问题在于，如果遇到存取器定义的属性，会只拷贝值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">extend</span><span class="p">({},</span> <span class="p">{</span>
+  <span class="kd">get</span> <span class="nx">a</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">1</span> <span class="p">}</span>
+<span class="p">})</span>
+<span class="c1">// {a: 1}</span>
+</code></pre></div></div>
+
+<p>为了解决这个问题，我们可以通过<code class="highlighter-rouge">Object.defineProperty</code>方法来拷贝属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="k">from</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">property</span> <span class="k">in</span> <span class="k">from</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">from</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">property</span><span class="p">))</span> <span class="k">continue</span><span class="p">;</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span>
+      <span class="nx">to</span><span class="p">,</span>
+      <span class="nx">property</span><span class="p">,</span>
+      <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="k">from</span><span class="p">,</span> <span class="nx">property</span><span class="p">)</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">to</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">extend</span><span class="p">({},</span> <span class="p">{</span> <span class="kd">get</span> <span class="nx">a</span><span class="p">(){</span> <span class="k">return</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">})</span>
+<span class="c1">// { get a(){ return 1 } })</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">hasOwnProperty</code>那一行用来过滤掉继承的属性，否则会报错，因为<code class="highlighter-rouge">Object.getOwnPropertyDescriptor</code>读不到继承属性的属性描述对象。</p>
+
+<h2 id="控制对象状态">控制对象状态</h2>
+
+<p>有时需要冻结对象的读写状态，防止对象被改变。JavaScript 提供了三种冻结方法，最弱的一种是<code class="highlighter-rouge">Object.preventExtensions</code>，其次是<code class="highlighter-rouge">Object.seal</code>，最强的是<code class="highlighter-rouge">Object.freeze</code>。</p>
+
+<h3 id="objectpreventextensions">Object.preventExtensions()</h3>
+
+<p><code class="highlighter-rouge">Object.preventExtensions</code>方法可以使得一个对象无法再添加新的属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">preventExtensions</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">value</span><span class="p">:</span> <span class="s1">'hello'</span>
+<span class="p">});</span>
+<span class="c1">// TypeError: Cannot define property:p, object is not extensible.</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// undefined</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj</code>对象经过<code class="highlighter-rouge">Object.preventExtensions</code>以后，就无法添加新属性了。</p>
+
+<h3 id="objectisextensible">Object.isExtensible()</h3>
+
+<p><code class="highlighter-rouge">Object.isExtensible</code>方法用于检查一个对象是否使用了<code class="highlighter-rouge">Object.preventExtensions</code>方法。也就是说，检查是否可以为一个对象添加属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">isExtensible</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="c1">// true</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">preventExtensions</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">isExtensible</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<p>上面代码中，对<code class="highlighter-rouge">obj</code>对象使用<code class="highlighter-rouge">Object.preventExtensions</code>方法以后，再使用<code class="highlighter-rouge">Object.isExtensible</code>方法，返回<code class="highlighter-rouge">false</code>，表示已经不能添加新属性了。</p>
+
+<h3 id="objectseal">Object.seal()</h3>
+
+<p><code class="highlighter-rouge">Object.seal</code>方法使得一个对象既无法添加新属性，也无法删除旧属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">p</span><span class="p">:</span> <span class="s1">'hello'</span> <span class="p">};</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="k">delete</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">p</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// "hello"</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="s1">'world'</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// undefined</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj</code>对象执行<code class="highlighter-rouge">Object.seal</code>方法以后，就无法添加新属性和删除旧属性了。</p>
+
+<p><code class="highlighter-rouge">Object.seal</code>实质是把属性描述对象的<code class="highlighter-rouge">configurable</code>属性设为<code class="highlighter-rouge">false</code>，因此属性描述对象不再能改变了。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">p</span><span class="p">:</span> <span class="s1">'a'</span>
+<span class="p">};</span>
+
+<span class="c1">// seal方法之前</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">)</span>
+<span class="c1">// Object {</span>
+<span class="c1">//   value: "a",</span>
+<span class="c1">//   writable: true,</span>
+<span class="c1">//   enumerable: true,</span>
+<span class="c1">//   configurable: true</span>
+<span class="c1">// }</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="c1">// seal方法之后</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">)</span>
+<span class="c1">// Object {</span>
+<span class="c1">//   value: "a",</span>
+<span class="c1">//   writable: true,</span>
+<span class="c1">//   enumerable: true,</span>
+<span class="c1">//   configurable: false</span>
+<span class="c1">// }</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">})</span>
+<span class="c1">// TypeError: Cannot redefine property: p</span>
+</code></pre></div></div>
+
+<p>上面代码中，使用<code class="highlighter-rouge">Object.seal</code>方法之后，属性描述对象的<code class="highlighter-rouge">configurable</code>属性就变成了<code class="highlighter-rouge">false</code>，然后改变<code class="highlighter-rouge">enumerable</code>属性就会报错。</p>
+
+<p><code class="highlighter-rouge">Object.seal</code>只是禁止新增或删除属性，并不影响修改某个属性的值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">p</span><span class="p">:</span> <span class="s1">'a'</span> <span class="p">};</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="s1">'b'</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// 'b'</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">Object.seal</code>方法对<code class="highlighter-rouge">p</code>属性的<code class="highlighter-rouge">value</code>无效，是因为此时<code class="highlighter-rouge">p</code>属性的可写性由<code class="highlighter-rouge">writable</code>决定。</p>
+
+<h3 id="objectissealed">Object.isSealed()</h3>
+
+<p><code class="highlighter-rouge">Object.isSealed</code>方法用于检查一个对象是否使用了<code class="highlighter-rouge">Object.seal</code>方法。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">p</span><span class="p">:</span> <span class="s1">'a'</span> <span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">isSealed</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="c1">// true</span>
+</code></pre></div></div>
+
+<p>这时，<code class="highlighter-rouge">Object.isExtensible</code>方法也返回<code class="highlighter-rouge">false</code>。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">p</span><span class="p">:</span> <span class="s1">'a'</span> <span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">isExtensible</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<h3 id="objectfreeze">Object.freeze()</h3>
+
+<p><code class="highlighter-rouge">Object.freeze</code>方法可以使得一个对象无法添加新属性、无法删除旧属性、也无法改变属性的值，使得这个对象实际上变成了常量。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">p</span><span class="p">:</span> <span class="s1">'hello'</span>
+<span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="s1">'world'</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// "hello"</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">t</span> <span class="o">=</span> <span class="s1">'hello'</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">t</span> <span class="c1">// undefined</span>
+
+<span class="k">delete</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// false</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="c1">// "hello"</span>
+</code></pre></div></div>
+
+<p>上面代码中，对<code class="highlighter-rouge">obj</code>对象进行<code class="highlighter-rouge">Object.freeze()</code>以后，修改属性、新增属性、删除属性都无效了。这些操作并不报错，只是默默地失败。如果在严格模式下，则会报错。</p>
+
+<h3 id="objectisfrozen">Object.isFrozen()</h3>
+
+<p><code class="highlighter-rouge">Object.isFrozen</code>方法用于检查一个对象是否使用了<code class="highlighter-rouge">Object.freeze</code>方法。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">p</span><span class="p">:</span> <span class="s1">'hello'</span>
+<span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">isFrozen</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="c1">// true</span>
+</code></pre></div></div>
+
+<p>使用<code class="highlighter-rouge">Object.freeze</code>方法以后，<code class="highlighter-rouge">Object.isSealed</code>将会返回<code class="highlighter-rouge">true</code>，<code class="highlighter-rouge">Object.isExtensible</code>返回<code class="highlighter-rouge">false</code>。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">p</span><span class="p">:</span> <span class="s1">'hello'</span>
+<span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">isSealed</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="c1">// true</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">isExtensible</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Object.isFrozen</code>的一个用途是，确认某个对象没有被冻结后，再对它的属性赋值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">p</span><span class="p">:</span> <span class="s1">'hello'</span>
+<span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">Object</span><span class="p">.</span><span class="nx">isFrozen</span><span class="p">(</span><span class="nx">obj</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="s1">'world'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>上面代码中，确认<code class="highlighter-rouge">obj</code>没有被冻结后，再对它的属性赋值，就不会报错了。</p>
+
+<h3 id="局限性">局限性</h3>
+
+<p>上面的三个方法锁定对象的可写性有一个漏洞：可以通过改变原型对象，来为对象增加属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">preventExtensions</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="nx">proto</span><span class="p">.</span><span class="nx">t</span> <span class="o">=</span> <span class="s1">'hello'</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">t</span>
+<span class="c1">// hello</span>
+</code></pre></div></div>
+
+<p>上面代码中，对象<code class="highlighter-rouge">obj</code>本身不能新增属性，但是可以在它的原型对象上新增属性，就依然能够在<code class="highlighter-rouge">obj</code>上读到。</p>
+
+<p>一种解决方案是，把<code class="highlighter-rouge">obj</code>的原型也冻结住。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">preventExtensions</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">preventExtensions</span><span class="p">(</span><span class="nx">proto</span><span class="p">);</span>
+
+<span class="nx">proto</span><span class="p">.</span><span class="nx">t</span> <span class="o">=</span> <span class="s1">'hello'</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">t</span> <span class="c1">// undefined</span>
+</code></pre></div></div>
+
+<p>另外一个局限是，如果属性值是对象，上面这些方法只能冻结属性指向的对象，而不能冻结对象本身的内容。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">foo</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">bar</span><span class="p">:</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">]</span>
+<span class="p">};</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">bar</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'c'</span><span class="p">);</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">bar</span> <span class="c1">// ["a", "b", "c"]</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">obj.bar</code>属性指向一个数组，<code class="highlighter-rouge">obj</code>对象被冻结以后，这个指向无法改变，即无法指向其他值，但是所指向的数组是可以改变的。</p>
+
+
+
+</article>
+
+<div class="row">
+<div class="twelve columns">
+
+<h2>留言</h2>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jstutorial'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+</div>
+</div>
+
+<footer>
+<div class="row">
+<div class="twelve columns">
+	<p><a href="/introduction/license.html">版权声明</a> | last modified on 2016-06-29 </p>
+</div>
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43771063-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+

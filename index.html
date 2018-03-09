@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>JavaScript 标准参考教程（alpha） -- JavaScript 标准参考教程（alpha）</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/toc.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+<body>
+
+<header class="top-bar" id="header">
+
+<div class="fixed">
+
+<nav class="top-bar">
+<ul>
+<!-- Title Area -->
+	<li class="name has-dropdown">
+	<h1><a href="/">JavaScript 标准参考教程（alpha） </a></h1>
+		<ul class="dropdown">
+			
+			<li><a href="/#introduction">导论</a></li>
+			
+			<li><a href="/#grammar">语法</a></li>
+			
+			<li><a href="/#stdlib">标准库</a></li>
+			
+			<li><a href="/#oop">面向对象编程</a></li>
+			
+			<li><a href="/#advanced">语法专题</a></li>
+			
+			<li><a href="/#dom">DOM模型</a></li>
+			
+			<li><a href="/#bom">浏览器环境</a></li>
+			
+			<li><a href="/#htmlapi">Web API</a></li>
+			
+		</ul>
+	</li>
+</ul>
+
+<section>
+
+
+
+<ul class="right">
+	<li class="divider"></li>
+	<li>
+		<a href="https://github.com/ruanyf/jstutorial" target="_blank">GitHub <i class="foundicon-edit"></i></a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">TOP <i class="foundicon-up-arrow"></i></a>
+	</li>
+</ul>
+
+</section>
+
+</nav>  
+</div>
+</header>
+
+
+<article class="bookIndex">
+
+  <div class="row">
+    <div class="twelve columns">
+
+<h1>JavaScript 标准参考教程（alpha）</h1>
+
+<p>英文标题：JavaScript Standards Reference Guide</p>
+
+<p>作者：　　<a href="http://www.ruanyifeng.com">阮一峰</a></p>
+
+<p>授权方式：<a href="/introduction/license.html">创意共享“署名-非商业性使用”许可证</a></p>
+
+<aside class="annoucement">
+
+<p>重要说明：本书正在持续修改之中，大部分章节都没有写完，正式发布还需要一段时间。所有内容随时可能发生变动。</p>
+
+</aside>
+
+<div id="toc" class="panel callout radius">目录</div>
+
+<h2 id="introduction">导论</h2>
+
+<ul>
+  <li><a href="introduction/intro.html">概述</a></li>
+  <li><a href="introduction/history.html">JavaScript的历史</a></li>
+</ul>
+
+<h2 id="grammar">语法</h2>
+
+<ul>
+  <li><a href="grammar/basic.html">基本语法</a></li>
+  <li><a href="grammar/types.html">数据类型</a></li>
+  <li><a href="grammar/number.html">数值</a></li>
+  <li><a href="grammar/string.html">字符串</a></li>
+  <li><a href="grammar/object.html">对象</a></li>
+  <li><a href="grammar/array.html">数组</a></li>
+  <li><a href="grammar/function.html">函数</a></li>
+  <li><a href="grammar/operator.html">运算符</a></li>
+  <li><a href="grammar/conversion.html">数据类型转换</a></li>
+  <li><a href="grammar/error.html">错误处理机制</a></li>
+  <li><a href="grammar/style.html">编程风格</a></li>
+</ul>
+
+<h2 id="stdlib">标准库</h2>
+
+<ul>
+  <li><a href="stdlib/object.html">Object对象</a></li>
+  <li><a href="stdlib/array.html">Array对象</a></li>
+  <li><a href="stdlib/wrapper.html">包装对象</a></li>
+  <li><a href="stdlib/number.html">Number对象</a></li>
+  <li><a href="stdlib/string.html">String对象</a></li>
+  <li><a href="stdlib/math.html">Math对象</a></li>
+  <li><a href="stdlib/date.html">Date对象</a></li>
+  <li><a href="stdlib/regexp.html">RegExp对象</a></li>
+  <li><a href="stdlib/json.html">JSON对象</a></li>
+  <li><a href="stdlib/console.html">console对象</a></li>
+  <li><a href="stdlib/attributes.html">属性描述对象</a></li>
+</ul>
+
+<h2 id="oop">面向对象编程</h2>
+
+<ul>
+  <li><a href="oop/basic.html">概述</a></li>
+  <li><a href="oop/this.html">this 关键字</a></li>
+  <li><a href="oop/prototype.html">prototype 对象</a></li>
+  <li><a href="oop/object.html">Object 对象与继承</a></li>
+  <li><a href="oop/pattern.html">面向对象编程的模式</a></li>
+</ul>
+
+<h2 id="advanced">语法专题</h2>
+
+<ul>
+  <li><a href="advanced/single-thread.html">异步操作概述</a></li>
+  <li><a href="advanced/timer.html">定时器</a></li>
+  <li><a href="advanced/promise.html">Promise 对象</a></li>
+  <li><a href="advanced/strict.html">严格模式</a></li>
+</ul>
+
+<h2 id="dom">DOM 模型</h2>
+
+<ul>
+  <li><a href="dom/node.html">概述</a></li>
+  <li><a href="dom/document.html">Document 节点</a></li>
+  <li><a href="dom/element.html">Element 节点</a></li>
+  <li><a href="dom/attribute.html">属性的操作</a></li>
+  <li><a href="dom/text.html">Text节点和DocumentFragment节点</a></li>
+  <li><a href="dom/event.html">事件模型</a></li>
+  <li><a href="dom/event-type.html">事件类型</a></li>
+  <li><a href="dom/css.html">CSS操作</a></li>
+  <li><a href="dom/mutationobserver.html">Mutation Observer</a></li>
+</ul>
+
+<h2 id="bom">浏览器环境</h2>
+
+<ul>
+  <li><a href="bom/engine.html">概述</a></li>
+  <li><a href="bom/window.html">window对象</a></li>
+  <li><a href="bom/history.html">History对象</a></li>
+  <li><a href="bom/cookie.html">Cookie</a></li>
+  <li><a href="bom/webstorage.html">Web Storage：浏览器端数据储存机制</a></li>
+  <li><a href="bom/same-origin.html">同源政策</a></li>
+  <li><a href="bom/ajax.html">Ajax</a></li>
+  <li><a href="bom/cors.html">CORS</a></li>
+</ul>
+
+
+    </div>
+  </div>
+</article>
+
+<footer>
+<div class="row">
+<div class="twelve columns">
+	<p><a href="/introduction/license.html">版权声明</a> | last modified on 2014-05-18 </p>
+</div>
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43771063-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+
+</body>
+</html>

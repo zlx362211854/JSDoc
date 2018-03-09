@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>SVG 图像 -- JavaScript 标准参考教程（alpha）</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/toc.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+<body>
+
+<header class="top-bar" id="header">
+
+<div class="fixed">
+
+<nav class="top-bar">
+<ul>
+<!-- Title Area -->
+	<li class="name has-dropdown">
+	<h1><a href="/">JavaScript 标准参考教程（alpha） </a></h1>
+		<ul class="dropdown">
+			
+			<li><a href="/#introduction">导论</a></li>
+			
+			<li><a href="/#grammar">语法</a></li>
+			
+			<li><a href="/#stdlib">标准库</a></li>
+			
+			<li><a href="/#oop">面向对象编程</a></li>
+			
+			<li><a href="/#advanced">语法专题</a></li>
+			
+			<li><a href="/#dom">DOM模型</a></li>
+			
+			<li><a href="/#bom">浏览器环境</a></li>
+			
+			<li><a href="/#htmlapi">Web API</a></li>
+			
+		</ul>
+	</li>
+</ul>
+
+<section>
+
+
+<ul class="left">
+<li class="divider"></li>
+<li class="has-dropdown"><a class="active" href="#"> Web API </a><ul class="dropdown">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/elements.html">概述</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/eventsource.html">Server-Sent Events</a></li>
+
+
+
+
+
+
+
+<li><a href="/htmlapi/file.html">文件和二进制数据的操作</a></li>
+
+
+
+
+
+<li><a href="/htmlapi/form.html">表单</a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/fullscreen.html">Fullscreen API：全屏操作</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/pagevisibility.html">Page Visibility API</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/requestanimationframe.html">requestAnimationFrame</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="active"><a href="#">SVG 图像</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/webcomponents.html">Web Components</a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/webspeech.html">Web Speech</a></li>
+
+
+
+
+
+
+
+<li><a href="/htmlapi/webworker.html">Web Worker</a></li>
+
+
+
+
+
+
+
+</ul></li>
+<li class="divider"></li>
+<li class="has-dropdown nav-3"><a href="#"> SVG 图像</a><ul class="dropdown">
+</ul></li>
+</ul>
+
+
+<ul class="right">
+	<li class="divider"></li>
+	<li>
+		<a href="https://github.com/ruanyf/jstutorial" target="_blank">GitHub <i class="foundicon-edit"></i></a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">TOP <i class="foundicon-up-arrow"></i></a>
+	</li>
+</ul>
+
+</section>
+
+</nav>  
+</div>
+</header>
+
+
+<article class="bookPage">
+
+  <div class="row">
+    <div class="twelve columns">
+
+<h1> SVG 图像 </h1>
+
+<aside class="right"><p>来自<a href="/">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p></aside>
+
+<div id="toc" class="panel callout radius">目录</div>
+
+
+<p>SVG是“可缩放矢量图”（Scalable Vector Graphics）的缩写，是一种描述向量图形的XML格式的标记化语言。也就是说，SVG本质上是文本文件，格式采用XML，可以在浏览器中显示出矢量图像。由于结构是XML格式，使得它可以插入HTML文档，成为DOM的一部分，然后用JavaScript和CSS进行操作。</p>
+
+<p>相比传统的图像文件格式（比如JPG和PNG），SVG图像的优势就是文件体积小，并且放大多少倍都不会失真，因此非常合适用于网页。</p>
+
+<p>SVG图像可以用专门的图像软件生成。目前，所有主流浏览器都支持，对于低于IE 9的浏览器，可以使用第三方的<a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills#svg">polyfills函数库</a>。</p>
+
+<h2 id="插入文件">插入文件</h2>
+
+<p>SVG插入网页的方法有多种，可以直接把SVG代码写在HTML网页里面。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;svg</span>
+  <span class="na">id=</span><span class="s">"mysvg"</span>
+  <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span>
+  <span class="na">viewBox=</span><span class="s">"0 0 800 600"</span>
+  <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid meet"</span>
+<span class="nt">&gt;</span>
+  <span class="nt">&lt;circle</span> <span class="na">id=</span><span class="s">"mycircle"</span> <span class="na">cx=</span><span class="s">"400"</span> <span class="na">cy=</span><span class="s">"300"</span> <span class="na">r=</span><span class="s">"50"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;svg&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>SVG代码也可以写在一个独立文件中，然后用在<code class="highlighter-rouge">&lt;img&gt;</code>、<code class="highlighter-rouge">&lt;object&gt;</code>、<code class="highlighter-rouge">&lt;embed&gt;</code>、<code class="highlighter-rouge">&lt;iframe&gt;</code>等标签，以及CSS的<code class="highlighter-rouge">background-image</code>属性，将这个文件插入网页。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 方法一 --&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"circle.svg"</span><span class="nt">&gt;</span>
+
+<span class="c">&lt;!-- 方法二 --&gt;</span>
+<span class="nt">&lt;object</span> <span class="na">id=</span><span class="s">"object"</span> <span class="na">data=</span><span class="s">"circle.svg"</span> <span class="na">type=</span><span class="s">"image/svg+xml"</span><span class="nt">&gt;&lt;/object&gt;</span>
+
+<span class="c">&lt;!-- 方法三 --&gt;</span>
+<span class="nt">&lt;embed</span> <span class="na">id=</span><span class="s">"embed"</span> <span class="na">src=</span><span class="s">"icon.svg"</span> <span class="na">type=</span><span class="s">"image/svg+xml"</span><span class="nt">&gt;</span>
+
+<span class="c">&lt;!-- 方法四 --&gt;</span>
+<span class="nt">&lt;iframe</span> <span class="na">id=</span><span class="s">"iframe"</span> <span class="na">src=</span><span class="s">"icon.svg"</span><span class="nt">&gt;&lt;/iframe&gt;</span>
+</code></pre></div></div>
+
+<p>上面是四种在网页中插入SVG图像的方式。</p>
+
+<p>此外，SVG文件还可以插入其他DOM元素，比如<code class="highlighter-rouge">&lt;div&gt;</code>元素，请看下面的例子（使用了jQuery函数库）。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"stage"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#stage'</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="s1">'icon.svg'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'svgLoaded'</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 加载失败的处理代码</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h2 id="svg格式">svg格式</h2>
+
+<p>SVG文件采用XML格式，就是普通的文本文件。下面是一个例子。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">width=</span><span class="s">"300"</span> <span class="na">height=</span><span class="s">"180"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">"30"</span>  <span class="na">cy=</span><span class="s">"50"</span> <span class="na">r=</span><span class="s">"25"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">"90"</span>  <span class="na">cy=</span><span class="s">"50"</span> <span class="na">r=</span><span class="s">"25"</span> <span class="na">class=</span><span class="s">"red"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">"150"</span> <span class="na">cy=</span><span class="s">"50"</span> <span class="na">r=</span><span class="s">"25"</span> <span class="na">class=</span><span class="s">"fancy"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div></div>
+
+<p>上面的代码定义了三个圆，<code class="highlighter-rouge">cx</code>、<code class="highlighter-rouge">cy</code>、<code class="highlighter-rouge">r</code>属性分别为<code class="highlighter-rouge">x</code>坐标、<code class="highlighter-rouge">y</code>坐标和半径。利用class属性，可以为这些圆指定样式。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.red</span> <span class="p">{</span>
+  <span class="py">fill</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span> <span class="c">/* not background-color! */</span>
+<span class="p">}</span>
+
+<span class="nc">.fancy</span> <span class="p">{</span>
+  <span class="py">fill</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="py">stroke</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span> <span class="c">/* similar to border-color */</span>
+  <span class="py">stroke-width</span><span class="p">:</span> <span class="m">3pt</span><span class="p">;</span> <span class="c">/* similar to border-width */</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">fill</code>属性表示填充色，<code class="highlighter-rouge">stroke</code>属性表示描边色，<code class="highlighter-rouge">stroke-width</code>属性表示边框宽度。</p>
+
+<p>除了<code class="highlighter-rouge">&lt;circle&gt;</code>标签表示圆，SVG文件还可以使用表示其他形状的标签。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg&gt;</span>
+  <span class="c">&lt;!-- 直线 --&gt;</span>
+  <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"0"</span> <span class="na">y1=</span><span class="s">"0"</span> <span class="na">x2=</span><span class="s">"200"</span> <span class="na">y2=</span><span class="s">"0"</span> <span class="na">style=</span><span class="s">"stroke:rgb(0,0,0);stroke-width:1"</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- 矩形 --&gt;</span>
+  <span class="nt">&lt;rect</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"0"</span> <span class="na">height=</span><span class="s">"100"</span> <span class="na">width=</span><span class="s">"200"</span> <span class="na">style=</span><span class="s">"stroke: #70d5dd; fill: #dd524b"</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- 椭圆 --&gt;</span>
+  <span class="nt">&lt;ellipse</span> <span class="na">cx=</span><span class="s">"60"</span> <span class="na">cy=</span><span class="s">"60"</span> <span class="na">ry=</span><span class="s">"40"</span> <span class="na">rx=</span><span class="s">"20"</span> <span class="na">stroke=</span><span class="s">"black"</span> <span class="na">stroke-width=</span><span class="s">"5"</span> <span class="na">fill=</span><span class="s">"silver"</span><span class="nt">/&gt;</span>  <span class="nt">&lt;polygon</span> <span class="na">fill=</span><span class="s">"green"</span> <span class="na">stroke=</span><span class="s">"orange"</span> <span class="na">stroke-width=</span><span class="s">"10"</span> <span class="na">points=</span><span class="s">"350, 75  379,161 469,161 397,215 423,301 350,250 277,301 303,215 231,161 321,161"</span><span class="nt">/&gt;&lt;polygon&gt;</span>
+  <span class="c">&lt;!-- 多边形 --&gt;</span>
+  <span class="nt">&lt;polygon</span> <span class="na">points=</span><span class="s">"60,20 100,40 100,80 60,100 20,80 20,40"</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- 路径 --&gt;</span>
+  <span class="nt">&lt;path</span> <span class="na">id=</span><span class="s">"path1"</span> <span class="na">d=</span><span class="s">"M160.143,196c0,0,62.777-28.033,90-17.143c71.428,28.572,73.952-25.987,84.286-21.428"</span> <span class="na">style=</span><span class="s">"fill:none;stroke:2;"</span><span class="nt">&gt;&lt;/path&gt;</span>
+  <span class="c">&lt;!-- 文本 --&gt;</span>
+  <span class="nt">&lt;text</span> <span class="na">x=</span><span class="s">"250"</span> <span class="na">y=</span><span class="s">"25"</span><span class="nt">&gt;</span>Hello World<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">line</code>、<code class="highlighter-rouge">rect</code>、<code class="highlighter-rouge">ellipse</code>、<code class="highlighter-rouge">polygon</code>和<code class="highlighter-rouge">path</code>标签，分别表示线条、矩形、椭圆、多边形、路径和文字。</p>
+
+<p><code class="highlighter-rouge">g</code>标签用于将多个形状组成一组（group）。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">width=</span><span class="s">'300'</span> <span class="na">height=</span><span class="s">'180'</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;g</span> <span class="na">transform=</span><span class="s">'translate(5, 15)'</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;text</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"0"</span><span class="nt">&gt;</span>Howdy!<span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;path</span> <span class="na">d=</span><span class="s">"M0,50 L50,0 Q100,0 100,50"</span>
+      <span class="na">fill=</span><span class="s">"none"</span> <span class="na">stroke-width=</span><span class="s">"3"</span> <span class="na">stroke=</span><span class="s">"black"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/g&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div></div>
+
+<p>SVG文件里面还可以插入图片文件。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">viewBox=</span><span class="s">"0 0 1 1"</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">height=</span><span class="s">"100"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;image</span> <span class="na">xlink:href=</span><span class="s">"path/to/image.jpg"</span>
+    <span class="na">width=</span><span class="s">"100%"</span> <span class="na">height=</span><span class="s">"100%"</span>
+    <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid slice"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">viewBox</code>表示长宽比例，这里是1：1（即正方形），第一对<code class="highlighter-rouge">width</code>和<code class="highlighter-rouge">height</code>表示图形默认的宽和高（CSS代码可以覆盖掉这两个值），<code class="highlighter-rouge">xlink:href</code>表示引用图像的来源，第二对<code class="highlighter-rouge">width</code>和<code class="highlighter-rouge">height</code>表示图像占满整个SVG图形，<code class="highlighter-rouge">preserveAspectRatio</code>等于<code class="highlighter-rouge">xMidYMid slice</code>，告诉浏览器置中图片，并且删去溢出的部分，更多参数可以参考<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio">MDN</a>。</p>
+
+<h2 id="dom-操作">DOM 操作</h2>
+
+<p>如果SVG代码直接写在HTML网页之中，它就成为网页DOM的一部分，可以直接用DOM操作。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span>
+  <span class="na">id=</span><span class="s">"mysvg"</span>
+  <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span>
+  <span class="na">viewBox=</span><span class="s">"0 0 800 600"</span>
+  <span class="na">preserveAspectRatio=</span><span class="s">"xMidYMid meet"</span>
+<span class="nt">&gt;</span>
+  <span class="nt">&lt;circle</span> <span class="na">id=</span><span class="s">"mycircle"</span> <span class="na">cx=</span><span class="s">"400"</span> <span class="na">cy=</span><span class="s">"300"</span> <span class="na">r=</span><span class="s">"50"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;svg&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码插入网页之后，就可以用CSS定制样式。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">circle</span> <span class="p">{</span>
+  <span class="py">stroke-width</span><span class="p">:</span> <span class="m">5</span><span class="p">;</span>
+  <span class="py">stroke</span><span class="p">:</span> <span class="m">#f00</span><span class="p">;</span>
+  <span class="py">fill</span><span class="p">:</span> <span class="m">#ff0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">circle</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="py">stroke</span><span class="p">:</span> <span class="m">#090</span><span class="p">;</span>
+  <span class="py">fill</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>然后，可以用JavaScript代码操作SVG文件。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">mycircle</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'mycircle'</span><span class="p">);</span>
+
+<span class="nx">mycircle</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'circle clicked - enlarging'</span><span class="p">);</span>
+  <span class="nx">mycircle</span><span class="p">.</span><span class="nx">setAttributeNS</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="mi">60</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>上面代码指定，如果点击图形，就改写<code class="highlighter-rouge">circle</code>元素的<code class="highlighter-rouge">r</code>属性。</p>
+
+<h2 id="javascript操作">JavaScript操作</h2>
+
+<h3 id="获取svg-dom">获取SVG DOM</h3>
+
+<p>如果使用<code class="highlighter-rouge">&lt;img&gt;</code>标签插入SVG文件，就无法获取SVG DOM。使用<code class="highlighter-rouge">&lt;object&gt;</code>、<code class="highlighter-rouge">&lt;iframe&gt;</code>、<code class="highlighter-rouge">&lt;embed&gt;</code>标签，可以获取SVG DOM。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">svgObject</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'object'</span><span class="p">).</span><span class="nx">contentDocument</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">svgIframe</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'iframe'</span><span class="p">).</span><span class="nx">contentDocument</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">svgEmbed</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'embed'</span><span class="p">).</span><span class="nx">getSVGDocument</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>由于SVG文件就是一般的XML文件，因此可以用DOM方法，选取页面元素。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 改变填充色</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'theCircle'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">fill</span> <span class="o">=</span> <span class="s1">'red'</span><span class="p">;</span>
+
+<span class="c1">// 改变元素属性</span>
+<span class="nb">document</span>
+<span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'theCircle'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span> <span class="s1">'changedColors'</span><span class="p">);</span>
+
+<span class="c1">// 绑定事件回调函数</span>
+<span class="nb">document</span>
+<span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'theCircle'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'clicked'</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="读取svg源码">读取svg源码</h3>
+
+<p>由于svg文件就是一个XML代码的文本文件，因此可以通过读取XML代码的方式，读取SVG源码。</p>
+
+<p>假定网页中有一个SVG元素。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"svg-container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;svg</span>
+    <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span>
+    <span class="na">xmlns:xlink=</span><span class="s">"http://www.w3.org/1999/xlink"</span>
+    <span class="na">xml:space=</span><span class="s">"preserve"</span> <span class="na">width=</span><span class="s">"500"</span> <span class="na">height=</span><span class="s">"440"</span>
+  <span class="nt">&gt;</span>
+    <span class="c">&lt;!-- svg code --&gt;</span>
+  <span class="nt">&lt;/svg&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>使用XMLSerializer实例的serializeToString方法，获取svg元素的代码。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">svgString</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLSerializer</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">serializeToString</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'svg'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="将svg图像转为canvas图像">将svg图像转为canvas图像</h3>
+
+<p>首先，需要新建一个<code class="highlighter-rouge">Image</code>对象，将svg图像指定到该<code class="highlighter-rouge">Image</code>对象的<code class="highlighter-rouge">src</code>属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">svgString</span><span class="p">],</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="s2">"image/svg+xml;charset=utf-8"</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">DOMURL</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nx">URL</span> <span class="o">||</span> <span class="nb">self</span><span class="p">.</span><span class="nx">webkitURL</span> <span class="o">||</span> <span class="nb">self</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">DOMURL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span>
+
+<span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">url</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>然后，当图像加载完成后，再将它绘制到<code class="highlighter-rouge">&lt;canvas&gt;</code>元素。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">img</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'canvas'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">'2d'</span><span class="p">);</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="实例">实例</h2>
+
+<p>假定我们要将下面的表格画成图形。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2014-01-01</td>
+      <td>$10</td>
+    </tr>
+    <tr>
+      <td>2014-02-01</td>
+      <td>$20</td>
+    </tr>
+    <tr>
+      <td>2014-03-01</td>
+      <td>$40</td>
+    </tr>
+    <tr>
+      <td>2014-04-01</td>
+      <td>$80</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>上面的图形，可以画成一个坐标系，Date作为横轴，Amount作为纵轴，四行数据画成一个数据点。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;svg</span> <span class="na">width=</span><span class="s">"350"</span> <span class="na">height=</span><span class="s">"160"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;g</span> <span class="na">class=</span><span class="s">"layer"</span> <span class="na">transform=</span><span class="s">"translate(60,10)"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;circle</span> <span class="na">r=</span><span class="s">"5"</span> <span class="na">cx=</span><span class="s">"0"</span>   <span class="na">cy=</span><span class="s">"105"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;circle</span> <span class="na">r=</span><span class="s">"5"</span> <span class="na">cx=</span><span class="s">"90"</span>  <span class="na">cy=</span><span class="s">"90"</span>  <span class="nt">/&gt;</span>
+    <span class="nt">&lt;circle</span> <span class="na">r=</span><span class="s">"5"</span> <span class="na">cx=</span><span class="s">"180"</span> <span class="na">cy=</span><span class="s">"60"</span>  <span class="nt">/&gt;</span>
+    <span class="nt">&lt;circle</span> <span class="na">r=</span><span class="s">"5"</span> <span class="na">cx=</span><span class="s">"270"</span> <span class="na">cy=</span><span class="s">"0"</span>   <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;g</span> <span class="na">class=</span><span class="s">"y axis"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"0"</span> <span class="na">y1=</span><span class="s">"0"</span> <span class="na">x2=</span><span class="s">"0"</span> <span class="na">y2=</span><span class="s">"120"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;text</span> <span class="na">x=</span><span class="s">"-40"</span> <span class="na">y=</span><span class="s">"105"</span> <span class="na">dy=</span><span class="s">"5"</span><span class="nt">&gt;</span>$10<span class="nt">&lt;/text&gt;</span>
+      <span class="nt">&lt;text</span> <span class="na">x=</span><span class="s">"-40"</span> <span class="na">y=</span><span class="s">"0"</span>   <span class="na">dy=</span><span class="s">"5"</span><span class="nt">&gt;</span>$80<span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;/g&gt;</span>
+    <span class="nt">&lt;g</span> <span class="na">class=</span><span class="s">"x axis"</span> <span class="na">transform=</span><span class="s">"translate(0, 120)"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"0"</span> <span class="na">y1=</span><span class="s">"0"</span> <span class="na">x2=</span><span class="s">"270"</span> <span class="na">y2=</span><span class="s">"0"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;text</span> <span class="na">x=</span><span class="s">"-30"</span>   <span class="na">y=</span><span class="s">"20"</span><span class="nt">&gt;</span>January 2014<span class="nt">&lt;/text&gt;</span>
+      <span class="nt">&lt;text</span> <span class="na">x=</span><span class="s">"240"</span> <span class="na">y=</span><span class="s">"20"</span><span class="nt">&gt;</span>April<span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;/g&gt;</span>
+  <span class="nt">&lt;/g&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+
+</code></pre></div></div>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ul>
+  <li>Jon McPartland, <a href="http://bigbitecreative.com/introduction-svg-animation/">An introduction to SVG animation</a></li>
+  <li>Alexander Goedde, <a href="http://tavendo.com/blog/post/super-vector-graphics/">SVG - Super Vector Graphics</a></li>
+  <li>Joseph Wegner, <a href="http://flippinawesome.org/2014/02/03/learning-svg/">Learning SVG</a></li>
+  <li>biovisualize, <a href="http://bl.ocks.org/biovisualize/8187844">Direct svg to canvas to png conversion</a></li>
+  <li>Tyler Sticka, <a href="https://cloudfour.com/thinks/cropping-image-thumbnails-with-svg/">Cropping Image Thumbnails with SVG</a></li>
+</ul>
+
+
+</article>
+
+<div class="row">
+<div class="twelve columns">
+
+<h2>留言</h2>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jstutorial'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+</div>
+</div>
+
+<footer>
+<div class="row">
+<div class="twelve columns">
+	<p><a href="/introduction/license.html">版权声明</a> | last modified on 2013-11-27 </p>
+</div>
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43771063-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+

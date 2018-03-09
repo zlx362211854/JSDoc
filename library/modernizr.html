@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Modernizr -- JavaScript 标准参考教程（alpha）</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/toc.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+<body>
+
+<header class="top-bar" id="header">
+
+<div class="fixed">
+
+<nav class="top-bar">
+<ul>
+<!-- Title Area -->
+	<li class="name has-dropdown">
+	<h1><a href="/">JavaScript 标准参考教程（alpha） </a></h1>
+		<ul class="dropdown">
+			
+			<li><a href="/#introduction">导论</a></li>
+			
+			<li><a href="/#grammar">语法</a></li>
+			
+			<li><a href="/#stdlib">标准库</a></li>
+			
+			<li><a href="/#oop">面向对象编程</a></li>
+			
+			<li><a href="/#advanced">语法专题</a></li>
+			
+			<li><a href="/#dom">DOM模型</a></li>
+			
+			<li><a href="/#bom">浏览器环境</a></li>
+			
+			<li><a href="/#htmlapi">Web API</a></li>
+			
+		</ul>
+	</li>
+</ul>
+
+<section>
+
+
+<ul class="left">
+<li class="divider"></li>
+<li class="has-dropdown"><a class="active" href="#"> 草稿一：函数库 </a><ul class="dropdown">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/library/d3.html">D3.js</a></li>
+
+
+
+
+
+
+
+<li><a href="/library/datejs.html">Datejs</a></li>
+
+
+
+
+
+
+
+<li><a href="/library/designpattern.html">设计模式</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="active"><a href="#">Modernizr</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/library/sorting.html">排序算法</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/library/underscore.html">Underscore.js</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul></li>
+<li class="divider"></li>
+<li class="has-dropdown nav-3"><a href="#"> Modernizr</a><ul class="dropdown">
+</ul></li>
+</ul>
+
+
+<ul class="right">
+	<li class="divider"></li>
+	<li>
+		<a href="https://github.com/ruanyf/jstutorial" target="_blank">GitHub <i class="foundicon-edit"></i></a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">TOP <i class="foundicon-up-arrow"></i></a>
+	</li>
+</ul>
+
+</section>
+
+</nav>  
+</div>
+</header>
+
+
+<article class="bookPage">
+
+  <div class="row">
+    <div class="twelve columns">
+
+<h1> Modernizr </h1>
+
+<aside class="right"><p>来自<a href="/">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p></aside>
+
+<div id="toc" class="panel callout radius">目录</div>
+
+
+<h2 id="概述">概述</h2>
+
+<p>随着HTML5和CSS3加入越来越多的模块，检查各种浏览器是否支持这些模块，成了一大难题。Modernizr就是用来解决这个问题的一个JavaScript库。</p>
+
+<p>首先，从modernizr.com下载这个库。下载的时候，可以选择所需要的模块。然后，将它插入HTML页面的头部，放在head标签之中。</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">class=</span><span class="s">"no-js"</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/modernizr.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
+
+<h2 id="css的新增class">CSS的新增class</h2>
+
+<p>使用Modernizr以后，首先会把html元素的class替换掉。以chrome浏览器为例，新增的class大概是下面的样子。</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;html</span> <span class="na">class=</span><span class="s">"js no-touch postmessage history multiplebgs boxshadow opacity cssanimations csscolumns cssgradients csstransforms csstransitions fontface localstorage sessionstorage svg inlinesvg blobbuilder blob bloburls download formdata"</span><span class="nt">&gt;</span></code></pre></figure>
+
+<p>IE 7则是这样：</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;html</span> <span class="na">class=</span><span class="s">"js no-touch postmessage no-history no-multiplebgs no-boxshadow no-opacity no-cssanimations no-csscolumns no-cssgradients no-csstransforms no-csstransitions fontface localstorage sessionstorage no-svg no-inlinesvg wf-loading no-blobbuilder no-blob no-bloburls no-download no-formdata"</span><span class="nt">&gt;</span></code></pre></figure>
+
+<p>然后，就可以针对不同的CSS class，指定不同的样式。</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.button</span> <span class="p">{</span>
+   <span class="nl">background</span><span class="p">:</span> <span class="m">#000</span><span class="p">;</span>
+   <span class="nl">opacity</span><span class="p">:</span> <span class="m">0.75</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.no-opacity</span> <span class="nc">.button</span> <span class="p">{</span>
+   <span class="nl">background</span><span class="p">:</span> <span class="m">#444</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="javascript侦测">JavaScript侦测</h2>
+
+<p>除了提供新增的CSS class，Modernizr还提供JavaScript方法，用来侦测浏览器是否支持某个功能。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">cssgradients</span><span class="p">;</span> <span class="c1">//True in Chrome, False in IE7</span>
+
+<span class="nx">Modernizr</span><span class="p">.</span><span class="nx">fontface</span><span class="p">;</span> <span class="c1">//True in Chrome, True in IE7</span>
+
+<span class="nx">Modernizr</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">;</span> <span class="c1">//True in Chrome, False in IE7</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">canvas</span><span class="p">){</span>
+	<span class="c1">// 支持canvas</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="c1">// 不支持canvas</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">touch</span><span class="p">){</span>
+	<span class="c1">// 支持触摸屏</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="c1">// 不支持触摸屏</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="加载器">加载器</h2>
+
+<p>Modernizr允许根据Javascript侦测的不同结果，加载不同的脚本文件。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">load</span><span class="p">({</span>
+  <span class="na">test</span> <span class="p">:</span>        <span class="nx">Modernizr</span><span class="p">.</span><span class="nx">localstorage</span><span class="p">,</span>
+  <span class="na">yep</span>  <span class="p">:</span>        <span class="s1">'localStorage.js'</span><span class="p">,</span>
+  <span class="na">nope</span> <span class="p">:</span>        <span class="s1">'alt-storageSystem.js'</span><span class="p">,</span>
+  <span class="na">complete</span> <span class="p">:</span>    <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">enableStorgeSaveUI</span><span class="p">();}</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>Modernizr.load方法用来加载脚本。它的属性如下：</p>
+
+<ul>
+  <li>test：用来测试浏览器是否支持某个属性。</li>
+  <li>yep：如果浏览器支持该属性，加载的脚本。</li>
+  <li>nope：如果浏览器不支持该属性，加载的脚本。</li>
+  <li>complete：加载完成后，运行的JavaScript代码。</li>
+</ul>
+
+<p>可以指定在支持某个功能的情况，所要加载的JavaScript脚本和CSS样式。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">load</span><span class="p">({</span>
+  <span class="na">test</span> <span class="p">:</span> <span class="nx">Modernizr</span><span class="p">.</span><span class="nx">touch</span><span class="p">,</span>
+  <span class="na">yep</span> <span class="p">:</span>  <span class="p">[</span><span class="s1">'js/touch.js'</span><span class="p">,</span> <span class="s1">'css/touchStyles.css'</span><span class="p">]</span>
+<span class="p">});</span></code></pre></figure>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ul>
+  <li>Chris Griffith, <a href="http://www.adobe.com/devnet/html5/articles/up-and-running-with-modernizr.html">Up and running with Modernizr</a></li>
+</ul>
+
+
+</article>
+
+<div class="row">
+<div class="twelve columns">
+
+<h2>留言</h2>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jstutorial'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+</div>
+</div>
+
+<footer>
+<div class="row">
+<div class="twelve columns">
+	<p><a href="/introduction/license.html">版权声明</a> | last modified on 2013-03-02 </p>
+</div>
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43771063-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Web Components -- JavaScript 标准参考教程（alpha）</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/toc.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+<body>
+
+<header class="top-bar" id="header">
+
+<div class="fixed">
+
+<nav class="top-bar">
+<ul>
+<!-- Title Area -->
+	<li class="name has-dropdown">
+	<h1><a href="/">JavaScript 标准参考教程（alpha） </a></h1>
+		<ul class="dropdown">
+			
+			<li><a href="/#introduction">导论</a></li>
+			
+			<li><a href="/#grammar">语法</a></li>
+			
+			<li><a href="/#stdlib">标准库</a></li>
+			
+			<li><a href="/#oop">面向对象编程</a></li>
+			
+			<li><a href="/#advanced">语法专题</a></li>
+			
+			<li><a href="/#dom">DOM模型</a></li>
+			
+			<li><a href="/#bom">浏览器环境</a></li>
+			
+			<li><a href="/#htmlapi">Web API</a></li>
+			
+		</ul>
+	</li>
+</ul>
+
+<section>
+
+
+<ul class="left">
+<li class="divider"></li>
+<li class="has-dropdown"><a class="active" href="#"> Web API </a><ul class="dropdown">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/elements.html">概述</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/eventsource.html">Server-Sent Events</a></li>
+
+
+
+
+
+
+
+<li><a href="/htmlapi/file.html">文件和二进制数据的操作</a></li>
+
+
+
+
+
+<li><a href="/htmlapi/form.html">表单</a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/fullscreen.html">Fullscreen API：全屏操作</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/pagevisibility.html">Page Visibility API</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/requestanimationframe.html">requestAnimationFrame</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/svg.html">SVG 图像</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="active"><a href="#">Web Components</a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/webspeech.html">Web Speech</a></li>
+
+
+
+
+
+
+
+<li><a href="/htmlapi/webworker.html">Web Worker</a></li>
+
+
+
+
+
+
+
+</ul></li>
+<li class="divider"></li>
+<li class="has-dropdown nav-3"><a href="#"> Web Components</a><ul class="dropdown">
+</ul></li>
+</ul>
+
+
+<ul class="right">
+	<li class="divider"></li>
+	<li>
+		<a href="https://github.com/ruanyf/jstutorial" target="_blank">GitHub <i class="foundicon-edit"></i></a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">TOP <i class="foundicon-up-arrow"></i></a>
+	</li>
+</ul>
+
+</section>
+
+</nav>  
+</div>
+</header>
+
+
+<article class="bookPage">
+
+  <div class="row">
+    <div class="twelve columns">
+
+<h1> Web Components </h1>
+
+<aside class="right"><p>来自<a href="/">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p></aside>
+
+<div id="toc" class="panel callout radius">目录</div>
+
+
+<h2 id="概述">概述</h2>
+
+<p>各种网站往往需要一些相同的模块，比如日历、调色板等等，这种模块就被称为“组件”（component）。Web Component就是网页组件式开发的技术规范。</p>
+
+<p>采用组件进行网站开发，有很多优点。</p>
+
+<p>（1）管理和使用非常容易。加载或卸载组件，只要添加或删除一行代码就可以了。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"my-dialog.htm"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;my-dialog</span> <span class="na">heading=</span><span class="s">"A Dialog"</span><span class="nt">&gt;</span>Lorem ipsum<span class="nt">&lt;/my-dialog&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码加载了一个对话框组件。</p>
+
+<p>（2）定制非常容易。组件往往留出接口，供使用者设置常见属性，比如上面代码的heading属性，就是用来设置对话框的标题。</p>
+
+<p>（3）组件是模块化编程思想的体现，非常有利于代码的重用。标准格式的模块，可以跨平台、跨框架使用，构建、部署和与其他UI元素互动都有统一做法。</p>
+
+<p>（4）组件提供了HTML、CSS、JavaScript封装的方法，实现了与同一页面上其他代码的隔离。</p>
+
+<p>未来的网站开发，可以像搭积木一样，把组件合在一起，就组成了一个网站。这是非常诱人的。</p>
+
+<p>Web Components不是单一的规范，而是一系列的技术组成，包括Template、Custom Element、Shadow DOM、HTML Import四种技术规范。使用时，并不一定这四者都要用到。其中，Custom Element和Shadow DOM最重要，Template和HTML Import只起到辅助作用。</p>
+
+<h2 id="template标签">template标签</h2>
+
+<h3 id="基本用法">基本用法</h3>
+
+<p>template标签表示网页中某些重复出现的部分的代码模板。它存在于DOM之中，但是在页面中不可见。</p>
+
+<p>下面的代码用来检查，浏览器是否支持template标签。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">supportsTemplate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s1">'content'</span> <span class="k">in</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'template'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">supportsTemplate</span><span class="p">())</span> <span class="p">{</span>
+  <span class="c1">// 支持</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// 不支持</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>下面是一个模板的例子。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;template</span> <span class="na">id=</span><span class="s">"profileTemplate"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"profile"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"profile__img"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"profile__name"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"profile__social"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+</code></pre></div></div>
+
+<p>使用的时候，需要用JavaScript在模板中插入内容，然后将其插入DOM。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#profileTemplate'</span><span class="p">);</span>
+<span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'.profile__img'</span><span class="p">).</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'profile.jpg'</span><span class="p">;</span>
+<span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'.profile__name'</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">'Barack Obama'</span><span class="p">;</span>
+<span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'.profile__social'</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">'Follow me on Twitter'</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>上面的代码是将模板直接插入DOM，更好的做法是克隆template节点，然后将克隆的节点插入DOM。这样做可以多次使用模板。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">clone</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">importNode</span><span class="p">(</span><span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">clone</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>接受template插入的元素，叫做宿主元素（host）。在template之中，可以对宿主元素设置样式。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;template&gt;</span>
+<span class="nt">&lt;style&gt;</span>
+  <span class="nd">:host</span> <span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="m">#f8f8f8</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nd">:host</span><span class="o">(</span><span class="nd">:hover</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="m">#ccc</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+</code></pre></div></div>
+
+<h3 id="documentimportnode">document.importNode()</h3>
+
+<p>document.importNode方法用于克隆外部文档的DOM节点。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">iframe</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"iframe"</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">oldNode</span> <span class="o">=</span> <span class="nx">iframe</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"myNode"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">newNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">importNode</span><span class="p">(</span><span class="nx">oldNode</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"container"</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newNode</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>上面例子是将iframe窗口之中的节点oldNode，克隆进入当前文档。</p>
+
+<p>注意，克隆节点之后，还必须用appendChild方法将其加入当前文档，否则不会显示。换个角度说，这意味着插入外部文档节点之前，必须用document.importNode方法先将这个节点准备好。</p>
+
+<p>document.importNode方法接受两个参数，第一个参数是外部文档的DOM节点，第二个参数是一个布尔值，表示是否连同子节点一起克隆，默认为false。大多数情况下，必须显式地将第二个参数设为true。</p>
+
+<h2 id="custom-element">Custom Element</h2>
+
+<p>HTML预定义的网页元素，有时并不符合我们的需要，这时可以自定义网页元素，这就叫做Custom Element。它是Web component技术的核心。举例来说，你可以自定义一个叫做super-button的网页元素。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;super-button&gt;&lt;/super-button&gt;</span>
+</code></pre></div></div>
+
+<p>注意，自定义网页元素的标签名必须含有连字符（-），一个或多个都可。这是因为浏览器内置的的HTML元素标签名，都不含有连字符，这样可以做到有效区分。</p>
+
+<p>下面的代码用于测试浏览器是否支持自定义元素。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="s1">'registerElement'</span> <span class="k">in</span> <span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 支持</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// 不支持</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="documentregisterelement">document.registerElement()</h3>
+
+<p>使用自定义元素前，必须用document对象的registerElement方法登记该元素。该方法返回一个自定义元素的构造函数。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">SuperButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'super-button'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">SuperButton</span><span class="p">());</span>
+</code></pre></div></div>
+
+<p>上面代码生成自定义网页元素的构造函数，然后通过构造函数生成一个实例，将其插入网页。</p>
+
+<p>可以看到，document.registerElement方法的第一个参数是一个字符串，表示自定义的网页元素标签名。该方法还可以接受第二个参数，表示自定义网页元素的原型对象。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">MyElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'user-profile'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">prototype</span><span class="p">:</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<p>上面代码注册了自定义元素user-profile。第二个参数指定该元素的原型为HTMLElement.prototype（浏览器内部所有Element节点的原型）。</p>
+
+<p>但是，如果写成上面这样，自定义网页元素就跟普通元素没有太大区别。自定义元素的真正优势在于，可以自定义它的API。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">buttonProto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+
+<span class="nx">buttonProto</span><span class="p">.</span><span class="nx">print</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Super Button!'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">SuperButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'super-button'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">prototype</span><span class="p">:</span> <span class="nx">buttonProto</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">supperButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'super-button'</span><span class="p">);</span>
+
+<span class="nx">supperButton</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>上面代码在原型对象上定义了一个print方法，然后将其指定为super-button元素的原型。因此，所有supper-button实例都可以调用print这个方法。</p>
+
+<p>如果想让自定义元素继承某种特定的网页元素，就要指定extends属性。比如，想让自定义元素继承h1元素，需要写成下面这样。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">MyElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'another-heading'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">prototype</span><span class="p">:</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">),</span>
+  <span class="na">extends</span><span class="p">:</span> <span class="s1">'h1'</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>另一个是自定义按钮（button）元素的例子。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">MyButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'super-button'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">prototype</span><span class="p">:</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLButtonElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">),</span>
+  <span class="na">extends</span><span class="p">:</span> <span class="s1">'button'</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>如果要继承一个自定义元素（比如<code class="highlighter-rouge">x-foo-extended</code>继承<code class="highlighter-rouge">x-foo</code>），也是采用extends属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">XFooExtended</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'x-foo-extended'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">prototype</span><span class="p">:</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">),</span>
+  <span class="na">extends</span><span class="p">:</span> <span class="s1">'x-foo'</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>定义了自定义元素以后，使用的时候，有两种方法。一种是直接使用，另一种是间接使用，指定为某个现有元素是自定义元素的实例。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 直接使用 --&gt;</span>
+<span class="nt">&lt;supper-button&gt;&lt;/supper-button&gt;</span>
+
+<span class="c">&lt;!-- 间接使用 --&gt;</span>
+<span class="nt">&lt;button</span> <span class="na">is=</span><span class="s">"supper-button"</span><span class="nt">&gt;&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<p>总之，如果A元素继承了B元素。那么，B元素的is属性，可以指定B元素是A元素的一个实例。</p>
+
+<h3 id="添加属性和方法">添加属性和方法</h3>
+
+<p>自定义元素的强大之处，就是可以在它上面定义新的属性和方法。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">XFooProto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">XFoo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'x-foo'</span><span class="p">,</span> <span class="p">{</span><span class="na">prototype</span><span class="p">:</span> <span class="nx">XFooProto</span><span class="p">});</span>
+</code></pre></div></div>
+
+<p>上面代码注册了一个x-foo标签，并且指明原型继承HTMLElement.prototype。现在，我们就可以在原型上面，添加新的属性和方法。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// 添加属性</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">XFooProto</span><span class="p">,</span> <span class="s2">"bar"</span><span class="p">,</span> <span class="p">{</span><span class="na">value</span><span class="p">:</span> <span class="mi">5</span><span class="p">});</span>
+
+<span class="c1">// 添加方法</span>
+<span class="nx">XFooProto</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'foo() called'</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// 另一种写法</span>
+<span class="kd">var</span> <span class="nx">XFoo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'x-foo'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">prototype</span><span class="p">:</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">bar</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">get</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">5</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">foo</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">value</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'foo() called'</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<h3 id="回调函数">回调函数</h3>
+
+<p>自定义元素的原型有一些属性，用来指定回调函数，在特定事件发生时触发。</p>
+
+<ul>
+  <li><strong>createdCallback</strong>：实例生成时触发</li>
+  <li><strong>attachedCallback</strong>：实例插入HTML文档时触发</li>
+  <li><strong>detachedCallback</strong>：实例从HTML文档移除时触发</li>
+  <li><strong>attributeChangedCallback(attrName, oldVal, newVal)</strong>：实例的属性发生改变时（添加、移除、更新）触发</li>
+</ul>
+
+<p>下面是一个例子。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+
+<span class="nx">proto</span><span class="p">.</span><span class="nx">createdCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'created'</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'This is a my-demo element!'</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">proto</span><span class="p">.</span><span class="nx">attachedCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'attached'</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">XFoo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'x-foo'</span><span class="p">,</span> <span class="p">{</span><span class="na">prototype</span><span class="p">:</span> <span class="nx">proto</span><span class="p">});</span>
+</code></pre></div></div>
+
+<p>利用回调函数，可以方便地在自定义元素中插入HTML语句。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">XFooProto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+
+<span class="nx">XFooProto</span><span class="p">.</span><span class="nx">createdCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"&lt;b&gt;I'm an x-foo-with-markup!&lt;/b&gt;"</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">XFoo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'x-foo-with-markup'</span><span class="p">,</span>
+  <span class="p">{</span><span class="na">prototype</span><span class="p">:</span> <span class="nx">XFooProto</span><span class="p">});</span>
+
+</code></pre></div></div>
+
+<p>上面代码定义了createdCallback回调函数，生成实例时，该函数运行，插入如下的HTML语句。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;x-foo-with-markup&gt;</span>
+   <span class="nt">&lt;b&gt;</span>I'm an x-foo-with-markup!<span class="nt">&lt;/b&gt;</span>
+<span class="nt">&lt;/x-foo-with-markup&gt;</span>
+
+</code></pre></div></div>
+
+<h2 id="shadow-dom">Shadow DOM</h2>
+
+<p>所谓Shadow DOM指的是，浏览器将模板、样式表、属性、JavaScript代码等，封装成一个独立的DOM元素。外部的设置无法影响到其内部，而内部的设置也不会影响到外部，与浏览器处理原生网页元素（比如<code class="highlighter-rouge">&lt;video&gt;</code>元素）的方式很像。Shadow DOM最大的好处有两个，一是可以向用户隐藏细节，直接提供组件，二是可以封装内部样式表，不会影响到外部。Chrome 35+支持Shadow DOM。</p>
+
+<p>Shadow DOM元素必须依存在一个现有的DOM元素之下，通过<code class="highlighter-rouge">createShadowRoot</code>方法创造，然后将其插入该元素。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">shadowRoot</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">createShadowRoot</span><span class="p">();</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">shadowRoot</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>上面代码创造了一个<code class="highlighter-rouge">shadowRoot</code>元素，然后将其插入HTML文档。</p>
+
+<p>下面的例子是指定网页中某个现存的元素，作为Shadow DOM的根元素。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button&gt;</span>Hello, world!<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'button'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">createShadowRoot</span><span class="p">();</span>
+  <span class="nx">root</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">'你好'</span><span class="p">;</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码指定现存的<code class="highlighter-rouge">button</code>元素，为Shadow DOM的根元素，并将<code class="highlighter-rouge">button</code>的文字从英文改为中文。</p>
+
+<p>通过innerHTML属性，可以为Shadow DOM指定内容。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">shadow</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#hostElement'</span><span class="p">).</span><span class="nx">createShadowRoot</span><span class="p">();</span>
+<span class="nx">shadow</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'&lt;p&gt;Here is some new text&lt;/p&gt;'</span><span class="p">;</span>
+<span class="nx">shadow</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="s1">'&lt;style&gt;p { color: red };&lt;/style&gt;'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>下面的例子是为Shadow DOM加上独立的模板。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"nameTag"</span><span class="nt">&gt;</span>张三<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;template</span> <span class="na">id=</span><span class="s">"nameTagTemplate"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nc">.outer</span> <span class="p">{</span>
+      <span class="nl">border</span><span class="p">:</span> <span class="m">2px</span> <span class="nb">solid</span> <span class="no">brown</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"outer"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"boilerplate"</span><span class="nt">&gt;</span>
+      Hi! My name is
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"name"</span><span class="nt">&gt;</span>
+      Bob
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码是一个<code class="highlighter-rouge">div</code>元素和模板。接下来，就是要把模板应用到<code class="highlighter-rouge">div</code>元素上。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">shadow</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#nameTag'</span><span class="p">).</span><span class="nx">createShadowRoot</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#nameTagTemplate'</span><span class="p">);</span>
+<span class="nx">shadow</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>上面代码先用<code class="highlighter-rouge">createShadowRoot</code>方法，对<code class="highlighter-rouge">div</code>创造一个根元素，用来指定Shadow DOM，然后把模板元素添加为<code class="highlighter-rouge">Shadow</code>的子元素。</p>
+
+<h2 id="html-import">HTML Import</h2>
+
+<h3 id="基本操作">基本操作</h3>
+
+<p>长久以来，网页可以加载外部的样式表、脚本、图片、多媒体，却无法方便地加载其他网页，iframe和ajax都只能提供部分的解决方案，且有很大的局限。HTML Import就是为了解决加载外部网页这个问题，而提出来的。</p>
+
+<p>下面代码用于测试当前浏览器是否支持HTML Import。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">function</span> <span class="nx">supportsImports</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s1">'import'</span> <span class="k">in</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'link'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">supportsImports</span><span class="p">())</span> <span class="p">{</span>
+  <span class="c1">// 支持</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// 不支持</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>HTML Import用于将外部的HTML文档加载进当前文档。我们可以将组件的HTML、CSS、JavaScript封装在一个文件里，然后使用下面的代码插入需要使用该组件的网页。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"dialog.html"</span><span class="nt">&gt;</span>
+
+</code></pre></div></div>
+
+<p>上面代码在网页中插入一个对话框组件，该组建封装在<code class="highlighter-rouge">dialog.html</code>文件。注意，dialog.html文件中的样式和JavaScript脚本，都对所插入的整个网页有效。</p>
+
+<p>假定A网页通过HTML Import加载了B网页，即B是一个组件，那么B网页的样式表和脚本，对A网页也有效（准确得说，只有style标签中的样式对A网页有效，link标签加载的样式表对A网页无效）。所以可以把多个样式表和脚本，都放在B网页中，都从那里加载。这对大型的框架，是很方便的加载方法。</p>
+
+<p>如果B与A不在同一个域，那么A所在的域必须打开CORS。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">&lt;!-- example.com必须打开CORS --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"http://example.com/elements.html"</span><span class="nt">&gt;</span>
+
+</code></pre></div></div>
+
+<p>除了用link标签，也可以用JavaScript调用link元素，完成HTML Import。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'link'</span><span class="p">);</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">rel</span> <span class="o">=</span> <span class="s1">'import'</span><span class="p">;</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s1">'file.html'</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{...};</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{...};</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">link</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<p>HTML Import加载成功时，会在link元素上触发load事件，加载失败时（比如404错误）会触发error事件，可以对这两个事件指定回调函数。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;script </span><span class="na">async</span><span class="nt">&gt;</span>
+  <span class="kd">function</span> <span class="nx">handleLoad</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Loaded import: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="kd">function</span> <span class="nx">handleError</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error loading import: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"file.html"</span>
+      <span class="na">onload=</span><span class="s">"handleLoad(event)"</span> <span class="na">onerror=</span><span class="s">"handleError(event)"</span><span class="nt">&gt;</span>
+
+</code></pre></div></div>
+
+<p>上面代码中，handleLoad和handleError函数的定义，必须在link元素的前面。因为浏览器元素遇到link元素时，立刻解析并加载外部网页（同步操作），如果这时没有对这两个函数定义，就会报错。</p>
+
+<p>HTML Import是同步加载，会阻塞当前网页的渲染，这主要是为了样式表的考虑，因为外部网页的样式表对当前网页也有效。如果想避免这一点，可以为link元素加上async属性。当然，这也意味着，如果外部网页定义了组件，就不能立即使用了，必须等HTML Import完成，才能使用。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"/path/to/import_that_takes_5secs.html"</span> <span class="na">async</span><span class="nt">&gt;</span>
+
+</code></pre></div></div>
+
+<p>但是，HTML Import不会阻塞当前网页的解析和脚本执行（即阻塞渲染）。这意味着在加载的同时，主页面的脚本会继续执行。</p>
+
+<p>最后，HTML Import支持多重加载，即被加载的网页同时又加载其他网页。如果这些网页都重复加载同一个外部脚本，浏览器只会抓取并执行一次该脚本。比如，A网页加载了B网页，它们各自都需要加载jQuery，浏览器只会加载一次jQuery。</p>
+
+<h3 id="脚本的执行">脚本的执行</h3>
+
+<p>外部网页的内容，并不会自动显示在当前网页中，它只是储存在浏览器中，等到被调用的时候才加载进入当前网页。为了加载网页网页，必须用DOM操作获取加载的内容。具体来说，就是使用link元素的import属性，来获取加载的内容。这一点与iframe完全不同。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'link[rel="import"]'</span><span class="p">).</span><span class="k">import</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>发生以下情况时，link.import属性为null。</p>
+
+<ul>
+  <li>浏览器不支持HTML Import</li>
+  <li>link元素没有声明<code class="highlighter-rouge">rel="import"</code></li>
+  <li>link元素没有被加入DOM</li>
+  <li>link元素已经从DOM中移除</li>
+  <li>对方域名没有打开CORS</li>
+</ul>
+
+<p>下面代码用于从加载的外部网页选取id为template的元素，然后将其克隆后加入当前网页的DOM。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">linkElement</span><span class="p">.</span><span class="k">import</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#template'</span><span class="p">);</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+
+</code></pre></div></div>
+
+<p>当前网页可以获取外部网页，反过来也一样，外部网页中的脚本，不仅可以获取本身的DOM，还可以获取link元素所在的当前网页的DOM。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// 以下代码位于被加载（import）的外部网页</span>
+
+<span class="c1">// importDoc指向被加载的DOM</span>
+<span class="kd">var</span> <span class="nx">importDoc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">currentScript</span><span class="p">.</span><span class="nx">ownerDocument</span><span class="p">;</span>
+
+<span class="c1">// mainDoc指向主文档的DOM</span>
+<span class="kd">var</span> <span class="nx">mainDoc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+
+<span class="c1">// 将子页面的样式表添加主文档</span>
+<span class="kd">var</span> <span class="nx">styles</span> <span class="o">=</span> <span class="nx">importDoc</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'link[rel="stylesheet"]'</span><span class="p">);</span>
+<span class="nx">mainDoc</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">styles</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+
+</code></pre></div></div>
+
+<p>上面代码将所加载的外部网页的样式表，添加进当前网页。</p>
+
+<p>被加载的外部网页的脚本是直接在当前网页的上下文执行，因为它的<code class="highlighter-rouge">window.document</code>指的是当前网页的document，而且它定义的函数可以被当前网页的脚本直接引用。</p>
+
+<h3 id="web-component的封装">Web Component的封装</h3>
+
+<p>对于Web Component来说，HTML Import的一个重要应用是在所加载的网页中，自动登记Custom Element。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;script&gt;</span>
+  <span class="c1">// 定义并登记</span><span class="o">&lt;</span><span class="nx">say</span><span class="o">-</span><span class="nx">hi</span><span class="o">&gt;</span>
+  <span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+
+  <span class="nx">proto</span><span class="p">.</span><span class="nx">createdCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'Hello, &lt;b&gt;'</span> <span class="o">+</span>
+                     <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">'name'</span><span class="p">)</span> <span class="o">||</span> <span class="s1">'?'</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&lt;/b&gt;'</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'say-hi'</span><span class="p">,</span> <span class="p">{</span><span class="na">prototype</span><span class="p">:</span> <span class="nx">proto</span><span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;template</span> <span class="na">id=</span><span class="s">"t"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nd">::content</span> <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span>
+      <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+  <span class="nt">&lt;span&gt;</span>I'm a shadow-element using Shadow DOM!<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;content&gt;&lt;/content&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">importDoc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">currentScript</span><span class="p">.</span><span class="nx">ownerDocument</span><span class="p">;</span> <span class="c1">//指向被加载的网页</span>
+
+    <span class="c1">// 定义并登记</span><span class="o">&lt;</span><span class="nx">shadow</span><span class="o">-</span><span class="nx">element</span><span class="o">&gt;</span>
+    <span class="kd">var</span> <span class="nx">proto2</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+
+    <span class="nx">proto2</span><span class="p">.</span><span class="nx">createdCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">importDoc</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#t'</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">clone</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">importNode</span><span class="p">(</span><span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">createShadowRoot</span><span class="p">();</span>
+      <span class="nx">root</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">clone</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span><span class="s1">'shadow-element'</span><span class="p">,</span> <span class="p">{</span><span class="na">prototype</span><span class="p">:</span> <span class="nx">proto2</span><span class="p">});</span>
+  <span class="p">})();</span>
+<span class="nt">&lt;/script&gt;</span>
+
+</code></pre></div></div>
+
+<p>上面代码定义并登记了两个元素：&lt;say-hi&gt;和&lt;shadow-element&gt;。在主页面使用这两个元素，非常简单。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"elements.html"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;say-hi</span> <span class="na">name=</span><span class="s">"Eric"</span><span class="nt">&gt;&lt;/say-hi&gt;</span>
+  <span class="nt">&lt;shadow-element&gt;</span>
+    <span class="nt">&lt;div&gt;</span>( I'm in the light dom )<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/shadow-element&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+
+</code></pre></div></div>
+
+<p>不难想到，这意味着HTML Import使得Web Component变得可分享了，其他人只要拷贝<code class="highlighter-rouge">elements.html</code>，就可以在自己的页面中使用了。</p>
+
+<h2 id="polymerjs">Polymer.js</h2>
+
+<p>Web Components是非常新的技术，为了让老式浏览器也能使用，Google推出了一个函数库<a href="http://www.polymer-project.org/">Polymer.js</a>。这个库不仅可以帮助开发者，定义自己的网页元素，还提供许多预先制作好的组件，可以直接使用。</p>
+
+<h3 id="直接使用的组件">直接使用的组件</h3>
+
+<p>Polymer.js提供的组件，可以直接插入网页，比如下面的google-map。。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"components/platform/platform.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"google-map.html"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;google-map</span> <span class="na">lat=</span><span class="s">"37.790"</span> <span class="na">long=</span><span class="s">"-122.390"</span><span class="nt">&gt;&lt;/google-map&gt;</span>
+
+</code></pre></div></div>
+
+<p>再比如，在网页中插入一个时钟，可以直接使用下面的标签。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;polymer-ui-clock&gt;&lt;/polymer-ui-clock&gt;</span>
+
+</code></pre></div></div>
+
+<p>自定义标签与其他标签的用法完全相同，也可以使用CSS指定它的样式。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">polymer-ui-clock</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">320px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">320px</span><span class="p">;</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="sx">url("../assets/glass.png")</span> <span class="nb">no-repeat</span><span class="p">;</span>
+  <span class="nl">background-size</span><span class="p">:</span> <span class="n">cover</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">4px</span> <span class="nb">solid</span> <span class="n">rgba</span><span class="p">(</span><span class="m">32</span><span class="p">,</span> <span class="m">32</span><span class="p">,</span> <span class="m">32</span><span class="p">,</span> <span class="m">0.3</span><span class="p">);</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="安装">安装</h3>
+
+<p>如果使用bower安装，至少需要安装platform和core components这两个核心部分。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+bower <span class="nb">install</span> <span class="nt">--save</span> Polymer/platform
+bower <span class="nb">install</span> <span class="nt">--save</span> Polymer/polymer
+
+</code></pre></div></div>
+
+<p>你还可以安装所有预先定义的界面组件。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+bower <span class="nb">install </span>Polymer/core-elements
+bower <span class="nb">install </span>Polymer/polymer-ui-elements
+
+</code></pre></div></div>
+
+<p>还可以只安装单个组件。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+bower <span class="nb">install </span>Polymer/polymer-ui-accordion
+
+</code></pre></div></div>
+
+<p>这时，组件根目录下的bower.json，会指明该组件的依赖的模块，这些模块会被自动安装。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="p">{</span>
+  <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"polymer-ui-accordion"</span><span class="p">,</span>
+  <span class="s2">"private"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"dependencies"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"polymer"</span><span class="p">:</span> <span class="s2">"Polymer/polymer#0.2.0"</span><span class="p">,</span>
+    <span class="s2">"polymer-selector"</span><span class="p">:</span> <span class="s2">"Polymer/polymer-selector#0.2.0"</span><span class="p">,</span>
+    <span class="s2">"polymer-ui-collapsible"</span><span class="p">:</span> <span class="s2">"Polymer/polymer-ui-collapsible#0.2.0"</span>
+  <span class="p">},</span>
+  <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"0.2.0"</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="自定义组件">自定义组件</h3>
+
+<p>下面是一个最简单的自定义组件的例子。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"../bower_components/polymer/polymer.html"</span><span class="nt">&gt;</span>
+ 
+<span class="nt">&lt;polymer-element</span> <span class="na">name=</span><span class="s">"lorem-element"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Lorem ipsum<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/polymer-element&gt;</span>
+
+</code></pre></div></div>
+
+<p>上面代码定义了lorem-element组件。它分成三个部分。</p>
+
+<p><strong>（1）import命令</strong></p>
+
+<p>import命令表示载入核心模块</p>
+
+<p><strong>（2）polymer-element标签</strong></p>
+
+<p>polymer-element标签定义了组件的名称（注意，组件名称中必须包含连字符）。它还可以使用extends属性，表示组件基于某种网页元素。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;polymer-element</span> <span class="na">name=</span><span class="s">"w3c-disclosure"</span> <span class="na">extends=</span><span class="s">"button"</span><span class="nt">&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong>（3）template标签</strong></p>
+
+<p>template标签定义了网页元素的模板。</p>
+
+<h3 id="组件的使用方法">组件的使用方法</h3>
+
+<p>在调用组件的网页中，首先加载polymer.js库和组件文件。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"components/platform/platform.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"w3c-disclosure.html"</span><span class="nt">&gt;</span>
+
+</code></pre></div></div>
+
+<p>然后，分成两种情况。如果组件不基于任何现有的HTML网页元素（即定义的时候没有使用extends属性），则可以直接使用组件。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;lorem-element&gt;&lt;/lorem-element&gt;</span>
+
+</code></pre></div></div>
+
+<p>这时网页上就会显示一行字“Lorem ipsum”。</p>
+
+<p>如果组件是基于（extends）现有的网页元素，则必须在该种元素上使用is属性指定组件。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+&lt;button is="w3c-disclosure"&gt;Expand section 1&lt;/button&gt;
+
+</code></pre></div></div>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ul>
+  <li>Todd Motto, <a href="http://toddmotto.com/web-components-concepts-shadow-dom-imports-templates-custom-elements/">Web Components and concepts, ShadowDOM, imports, templates, custom elements</a></li>
+  <li>Dominic Cooney, <a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/">Shadow DOM 101</a></li>
+  <li>Eric Bidelman, <a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/">HTML’s New Template Tag</a></li>
+  <li>Rey Bango, <a href="http://code.tutsplus.com/tutorials/using-polymer-to-create-web-components--cms-20475">Using Polymer to Create Web Components</a></li>
+  <li>Cédric Trévisan, Building an Accessible Disclosure Button – using Web Components](http://blog.paciellogroup.com/2014/06/accessible-disclosure-button-using-web-components/)</li>
+  <li>Eric Bidelman, <a href="http://www.html5rocks.com/en/tutorials/webcomponents/customelements/">Custom Elements: defining new elements in HTML</a></li>
+  <li>Eric Bidelman, <a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/">HTML Imports</a></li>
+  <li>TJ VanToll, <a href="http://developer.telerik.com/featured/web-components-ready-production/">Why Web Components Are Ready For Production</a></li>
+  <li>Chris Bateman, <a href="http://cbateman.com/blog/a-no-nonsense-guide-to-web-components-part-1-the-specs/">A No-Nonsense Guide to Web Components, Part 1: The Specs</a></li>
+</ul>
+
+
+</article>
+
+<div class="row">
+<div class="twelve columns">
+
+<h2>留言</h2>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jstutorial'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+</div>
+</div>
+
+<footer>
+<div class="row">
+<div class="twelve columns">
+	<p><a href="/introduction/license.html">版权声明</a> | last modified on 2014-07-09 </p>
+</div>
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43771063-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+

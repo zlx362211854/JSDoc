@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>jQuery工具方法 -- JavaScript 标准参考教程（alpha）</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/toc.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+<body>
+
+<header class="top-bar" id="header">
+
+<div class="fixed">
+
+<nav class="top-bar">
+<ul>
+<!-- Title Area -->
+	<li class="name has-dropdown">
+	<h1><a href="/">JavaScript 标准参考教程（alpha） </a></h1>
+		<ul class="dropdown">
+			
+			<li><a href="/#introduction">导论</a></li>
+			
+			<li><a href="/#grammar">语法</a></li>
+			
+			<li><a href="/#stdlib">标准库</a></li>
+			
+			<li><a href="/#oop">面向对象编程</a></li>
+			
+			<li><a href="/#advanced">语法专题</a></li>
+			
+			<li><a href="/#dom">DOM模型</a></li>
+			
+			<li><a href="/#bom">浏览器环境</a></li>
+			
+			<li><a href="/#htmlapi">Web API</a></li>
+			
+		</ul>
+	</li>
+</ul>
+
+<section>
+
+
+<ul class="left">
+<li class="divider"></li>
+<li class="has-dropdown"><a class="active" href="#"> jQuery </a><ul class="dropdown">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/jquery/basic.html">jQuery概述</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/jquery/deferred.html">jQuery.Deferred对象</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/jquery/jquery-free.html">如何做到 jQuery-free？</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/jquery/plugin.html">jQuery插件开发</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="active"><a href="#">jQuery工具方法</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul></li>
+<li class="divider"></li>
+<li class="has-dropdown nav-3"><a href="#"> jQuery工具方法</a><ul class="dropdown">
+</ul></li>
+</ul>
+
+
+<ul class="right">
+	<li class="divider"></li>
+	<li>
+		<a href="https://github.com/ruanyf/jstutorial" target="_blank">GitHub <i class="foundicon-edit"></i></a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">TOP <i class="foundicon-up-arrow"></i></a>
+	</li>
+</ul>
+
+</section>
+
+</nav>  
+</div>
+</header>
+
+
+<article class="bookPage">
+
+  <div class="row">
+    <div class="twelve columns">
+
+<h1> jQuery工具方法 </h1>
+
+<aside class="right"><p>来自<a href="/">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p></aside>
+
+<div id="toc" class="panel callout radius">目录</div>
+
+
+<p>jQuery函数库提供了一个jQuery对象（简写为$），这个对象本身是一个构造函数，可以用来生成jQuery对象的实例。有了实例以后，就可以调用许多针对实例的方法，它们定义jQuery.prototype对象上面（简写为$.fn）。</p>
+
+<p>除了实例对象的方法以外，jQuery对象本身还提供一些方法（即直接定义jQuery对象上面），不需要生成实例就能使用。由于这些方法类似“通用工具”的性质，所以我们把它们称为“工具方法”（utilities）。</p>
+
+<h2 id="常用工具方法">常用工具方法</h2>
+
+<p><strong>（1）$.trim</strong></p>
+
+<p>$.trim方法用于移除字符串头部和尾部多余的空格。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="s1">'   Hello   '</span><span class="p">)</span> <span class="c1">// Hello</span></code></pre></figure>
+
+<p><strong>（2）$.contains</strong></p>
+
+<p>$.contains方法返回一个布尔值，表示某个DOM元素（第二个参数）是否为另一个DOM元素（第一个参数）的下级元素。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span> 
+<span class="c1">// true</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">);</span> 
+<span class="c1">// false</span></code></pre></figure>
+
+<p><strong>（3）$.each，$.map</strong></p>
+
+<p>$.each方法用于遍历数组和对象，然后返回原始对象。它接受两个参数，分别是数据集合和回调函数。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">97</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">index</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nx">value</span> <span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">// 0: 52 </span>
+<span class="c1">// 1: 97 </span>
+
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">p1</span><span class="p">:</span> <span class="s2">"hello"</span><span class="p">,</span>
+  <span class="na">p2</span><span class="p">:</span> <span class="s2">"world"</span>
+<span class="p">};</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span> <span class="nx">obj</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">key</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nx">value</span> <span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">// p1: hello</span>
+<span class="c1">// p2: world</span></code></pre></figure>
+
+<p>需要注意的，jQuery对象实例也有一个each方法（$.fn.each），两者的作用差不多。</p>
+
+<p>$.map方法也是用来遍历数组和对象，但是会返回一个新对象。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">];</span>
+<span class="nx">a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">i</span><span class="p">){</span>
+  <span class="k">return</span> <span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">i</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">// ["A0", "B1", "C2", "D3", "E4"]</span></code></pre></figure>
+
+<p><strong>（4）$.inArray</strong></p>
+
+<p>$.inArray方法返回一个值在数组中的位置（从0开始）。如果该值不在数组中，则返回-1。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">];</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// 3</span></code></pre></figure>
+
+<p><strong>（5）$.extend</strong></p>
+
+<p>$.extend方法用于将多个对象合并进第一个对象。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o1</span> <span class="o">=</span> <span class="p">{</span><span class="na">p1</span><span class="p">:</span><span class="s1">'a'</span><span class="p">,</span><span class="na">p2</span><span class="p">:</span><span class="s1">'b'</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="p">{</span><span class="na">p1</span><span class="p">:</span><span class="s1">'c'</span><span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">o1</span><span class="p">,</span><span class="nx">o2</span><span class="p">);</span>
+<span class="nx">o1</span><span class="p">.</span><span class="nx">p1</span> <span class="c1">// "c"</span></code></pre></figure>
+
+<p>$.extend的另一种用法是生成一个新对象，用来继承原有对象。这时，它的第一个参数应该是一个空对象。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o1</span> <span class="o">=</span> <span class="p">{</span><span class="na">p1</span><span class="p">:</span><span class="s1">'a'</span><span class="p">,</span><span class="na">p2</span><span class="p">:</span><span class="s1">'b'</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="p">{</span><span class="na">p1</span><span class="p">:</span><span class="s1">'c'</span><span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span><span class="nx">o1</span><span class="p">,</span><span class="nx">o2</span><span class="p">);</span>
+<span class="nx">o</span>
+<span class="c1">// Object {p1: "c", p2: "b"}</span></code></pre></figure>
+
+<p>默认情况下，extend方法生成的对象是“浅拷贝”，也就是说，如果某个属性是对象或数组，那么只会生成指向这个对象或数组的指针，而不会复制值。如果想要“深拷贝”，可以在extend方法的第一个参数传入布尔值true。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o1</span> <span class="o">=</span> <span class="p">{</span><span class="na">p1</span><span class="p">:[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">]};</span>
+
+<span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span><span class="nx">o1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">o3</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="kc">true</span><span class="p">,{},</span><span class="nx">o1</span><span class="p">);</span>
+
+<span class="nx">o1</span><span class="p">.</span><span class="nx">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="s1">'c'</span><span class="p">;</span>
+
+<span class="nx">o2</span><span class="p">.</span><span class="nx">p1</span> <span class="c1">// ["c", "b"]</span>
+<span class="nx">o3</span><span class="p">.</span><span class="nx">p1</span> <span class="c1">// ["a", "b"] </span></code></pre></figure>
+
+<p>上面代码中，o2是浅拷贝，o3是深拷贝。结果，改变原始数组的属性，o2会跟着一起变，而o3不会。</p>
+
+<p><strong>（6）$.proxy</strong></p>
+
+<p>$.proxy方法类似于ECMAScript 5的bind方法，可以绑定函数的上下文（也就是this对象）和参数，返回一个新函数。</p>
+
+<p>jQuery.proxy()的主要用处是为回调函数绑定上下文对象。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">type</span><span class="p">:</span> <span class="s2">"object"</span><span class="p">,</span>
+	<span class="na">test</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s2">"#button"</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="nx">o</span><span class="p">.</span><span class="nx">test</span><span class="p">)</span> <span class="c1">// 无输出</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">test</span><span class="p">,</span> <span class="nx">o</span><span class="p">))</span> <span class="c1">// object</span></code></pre></figure>
+
+<p>上面的代码中，第一个回调函数没有绑定上下文，所以结果为空，没有任何输出；第二个回调函数将上下文绑定为对象o，结果就为object。</p>
+
+<p>这个例子的另一种等价的写法是：</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">"#button"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span> <span class="s2">"click"</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">test</span><span class="p">))</span> </code></pre></figure>
+
+<p>上面代码的$.proxy(o, test)的意思是，将o的方法test与o绑定。</p>
+
+<p>这个例子表明，proxy方法的写法主要有两种。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">jQuery</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="kd">function</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span>
+
+<span class="c1">// or</span>
+
+<span class="nx">jQuery</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span></code></pre></figure>
+
+<p>第一种写法是为函数（function）指定上下文对象（context），第二种写法是指定上下文对象（context）和它的某个方法名（name）。</p>
+
+<p>再看一个例子。正常情况下，下面代码中的this对象指向发生click事件的DOM对象。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'#myElement'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'aNewClass'</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>如果我们想让回调函数延迟运行，使用setTimeout方法，代码就会出错，因为setTimeout使得回调函数在全局环境运行，this将指向全局对象。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'#myElement'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'aNewClass'</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>上面代码中的this，将指向全局对象window，导致出错。</p>
+
+<p>这时，就可以用proxy方法，将this对象绑定到myElement对象。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'#myElement'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'aNewClass'</span><span class="p">);</span> 
+    <span class="p">},</span> <span class="k">this</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p><strong>（7）$.data，$.removeData</strong></p>
+
+<p>$.data方法可以用来在DOM节点上储存数据。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 存入数据</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span> <span class="s2">"foo"</span><span class="p">,</span> <span class="mi">52</span> <span class="p">);</span>
+
+<span class="c1">// 读取数据</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span> <span class="s2">"foo"</span><span class="p">);</span>
+
+<span class="c1">// 读取所有数据</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span></code></pre></figure>
+
+<p>上面代码在网页元素body上储存了一个键值对，键名为“foo”，键值为52。</p>
+
+<p>$.removeData方法用于移除$.data方法所储存的数据。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">div</span><span class="p">,</span> <span class="s2">"test1"</span><span class="p">,</span> <span class="s2">"VALUE-1"</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">removeData</span><span class="p">(</span><span class="nx">div</span><span class="p">,</span> <span class="s2">"test1"</span><span class="p">);</span></code></pre></figure>
+
+<p><strong>（8）$.parseHTML，$.parseJSON，$.parseXML</strong></p>
+
+<p>$.parseHTML方法用于将字符串解析为DOM对象。</p>
+
+<p>$.parseJSON方法用于将JSON字符串解析为JavaScript对象，作用与原生的JSON.parse()类似。但是，jQuery没有提供类似JSON.stringify()的方法，即不提供将JavaScript对象转为JSON对象的方法。</p>
+
+<p>$.parseXML方法用于将字符串解析为XML对象。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">parseHTML</span><span class="p">(</span><span class="s2">"hello, &lt;b&gt;my name is&lt;/b&gt; jQuery."</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">parseJSON</span><span class="p">(</span><span class="s1">'{"name": "John"}'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">xml</span> <span class="o">=</span> <span class="s2">"&lt;rss version='2.0'&gt;&lt;channel&gt;&lt;title&gt;RSS Title&lt;/title&gt;&lt;/channel&gt;&lt;/rss&gt;"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">xmlDoc</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">parseXML</span><span class="p">(</span><span class="nx">xml</span><span class="p">);</span></code></pre></figure>
+
+<p><strong>（9）$.makeArray</strong></p>
+
+<p>$.makeArray方法将一个类似数组的对象，转化为真正的数组。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">makeArray</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"div"</span><span class="p">));</span></code></pre></figure>
+
+<p><strong>（10）$.merge</strong></p>
+
+<p>$.merge方法用于将一个数组（第二个参数）合并到另一个数组（第一个参数）之中。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">a2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">];</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">a1</span><span class="p">,</span> <span class="nx">a2</span><span class="p">);</span>
+
+<span class="nx">a1</span>
+<span class="c1">// [0, 1, 2, 2, 3, 4]</span></code></pre></figure>
+
+<p><strong>（11）$.now</strong></p>
+
+<p>$.now方法返回当前时间距离1970年1月1日00:00:00 UTC对应的毫秒数，等同于(new Date).getTime()。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span>
+<span class="c1">// 1388212221489</span></code></pre></figure>
+
+<h2 id="判断数据类型的方法">判断数据类型的方法</h2>
+
+<p>jQuery提供一系列工具方法，用来判断数据类型，以弥补JavaScript原生的typeof运算符的不足。以下方法对参数进行判断，返回一个布尔值。</p>
+
+<ul>
+  <li>jQuery.isArray()：是否为数组。</li>
+  <li>jQuery.isEmptyObject()：是否为空对象（不含可枚举的属性）。</li>
+  <li>jQuery.isFunction()：是否为函数。</li>
+  <li>jQuery.isNumeric()：是否为数值（整数或浮点数）。</li>
+  <li>jQuery.isPlainObject()：是否为使用“{}”或“new Object”生成的对象，而不是浏览器原生提供的对象。</li>
+  <li>jQuery.isWindow()：是否为window对象。</li>
+  <li>jQuery.isXMLDoc()：判断一个DOM节点是否处于XML文档之中。</li>
+</ul>
+
+<p>下面是一些例子。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">isEmptyObject</span><span class="p">({})</span> <span class="c1">// true</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isPlainObject</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">)</span> <span class="c1">// false</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isWindow</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span> <span class="c1">// true</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isXMLDoc</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span> <span class="c1">// false</span></code></pre></figure>
+
+<p>除了上面这些方法以外，还有一个$.type方法，可以返回一个变量的数据类型。它的实质是用Object.prototype.toString方法读取对象内部的[[Class]]属性（参见《标准库》的Object对象一节）。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="sr">/test/</span><span class="p">)</span> <span class="c1">// "regexp"</span></code></pre></figure>
+
+<h2 id="ajax操作">Ajax操作</h2>
+
+<h3 id="ajax">$.ajax</h3>
+
+<p>jQuery对象上面还定义了Ajax方法（$.ajax()），用来处理Ajax操作。调用该方法后，浏览器就会向服务器发出一个HTTP请求。</p>
+
+<p>$.ajax()的用法主要有两种。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="nx">url</span><span class="p">[,</span> <span class="nx">options</span><span class="p">])</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">([</span><span class="nx">options</span><span class="p">])</span>
+
+</code></pre></div></div>
+
+<p>上面代码中的url，指的是服务器网址，options则是一个对象参数，设置Ajax请求的具体参数。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">async</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'/url/to/json'</span><span class="p">,</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+  <span class="na">data</span> <span class="p">:</span> <span class="p">{</span> <span class="na">id</span> <span class="p">:</span> <span class="mi">123</span> <span class="p">},</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">30000</span><span class="p">,</span>
+  <span class="na">success</span><span class="p">:</span> <span class="nx">successCallback</span><span class="p">,</span>
+  <span class="na">error</span><span class="p">:</span> <span class="nx">errorCallback</span><span class="p">,</span>
+  <span class="na">complete</span><span class="p">:</span> <span class="nx">completeCallback</span><span class="p">,</span>
+  <span class="na">statusCode</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">404</span><span class="p">:</span> <span class="nx">handler404</span><span class="p">,</span>
+        <span class="mi">500</span><span class="p">:</span> <span class="nx">handler500</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="kd">function</span> <span class="nx">successCallback</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s1">'&lt;h1/&gt;'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">title</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">'body'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">errorCallback</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'出问题了！'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">completeCallback</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Ajax请求已结束。'</span><span class="p">);</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>上面代码的对象参数有多个属性，含义如下：</p>
+
+<ul>
+  <li>accepts：将本机所能处理的数据类型，告诉服务器。</li>
+  <li>async：该项默认为true，如果设为false，则表示发出的是同步请求。</li>
+  <li>beforeSend：指定发出请求前，所要调用的函数，通常用来对发出的数据进行修改。</li>
+  <li>cache：该项默认为true，如果设为false，则浏览器不缓存返回服务器返回的数据。注意，浏览器本身就不会缓存POST请求返回的数据，所以即使设为false，也只对HEAD和GET请求有效。</li>
+  <li>complete：指定当HTTP请求结束时（请求成功或请求失败的回调函数，此时已经运行完毕）的回调函数。不管请求成功或失败，该回调函数都会执行。它的参数为发出请求的原始对象以及返回的状态信息。</li>
+  <li>contentType：发送到服务器的数据类型。</li>
+  <li>context：指定一个对象，作为所有Ajax相关的回调函数的this对象。</li>
+  <li>crossDomain：该属性设为true，将强制向相同域名发送一个跨域请求（比如JSONP）。</li>
+  <li>data：向服务器发送的数据，如果使用GET方法，此项将转为查询字符串，附在网址的最后。</li>
+  <li>dataType：向服务器请求的数据类型，可以设为text、html、script、json、jsonp和xml。</li>
+  <li>error：请求失败时的回调函数，函数参数为发出请求的原始对象以及返回的状态信息。</li>
+  <li>headers：指定HTTP请求的头信息。</li>
+  <li>ifModified：如果该属性设为true，则只有当服务器端的内容与上次请求不一样时，才会发出本次请求。</li>
+  <li>jsonp：指定JSONP请求“callback=?”中的callback的名称。</li>
+  <li>jsonpCallback: 指定JSONP请求中回调函数的名称。</li>
+  <li>mimeType：指定HTTP请求的mime type。</li>
+  <li>password：指定HTTP认证所需要的密码。</li>
+  <li>statusCode：值为一个对象，为服务器返回的状态码，指定特别的回调函数。</li>
+  <li>success：请求成功时的回调函数，函数参数为服务器传回的数据、状态信息、发出请求的原始对象。</li>
+  <li>timeout: 等待的最长毫秒数。如果过了这个时间，请求还没有返回，则自动将请求状态改为失败。</li>
+  <li>type：向服务器发送信息所使用的HTTP动词，默认为GET，其他动词有POST、PUT、DELETE。</li>
+  <li>url：服务器端网址。这是唯一必需的一个属性，其他属性都可以省略。</li>
+  <li>username：指定HTTP认证的用户名。</li>
+  <li>xhr：指定生成XMLHttpRequest对象时的回调函数。</li>
+</ul>
+
+<p>这些参数之中，url可以独立出来，作为ajax方法的第一个参数。也就是说，上面代码还可以写成下面这样。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">'/url/to/json'</span><span class="p">,{</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+  <span class="na">success</span><span class="p">:</span> <span class="nx">successCallback</span><span class="p">,</span>
+  <span class="na">error</span><span class="p">:</span> <span class="nx">errorCallback</span>
+<span class="p">})</span></code></pre></figure>
+
+<p>作为向服务器发送的数据，data属性也可以写成一个对象。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'/remote/url'</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">param1</span><span class="p">:</span> <span class="s1">'value1'</span><span class="p">,</span>
+    <span class="na">param2</span><span class="p">:</span> <span class="s1">'value2'</span><span class="p">,</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// 相当于</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'/remote/url?param1=value1&amp;param2=value2...'</span>
+<span class="p">}});</span>
+
+</code></pre></div></div>
+
+<h3 id="简便写法">简便写法</h3>
+
+<p>ajax方法还有一些简便写法。</p>
+
+<ul>
+  <li>$.get()：发出GET请求。</li>
+  <li>$.getScript()：读取一个JavaScript脚本文件并执行。</li>
+  <li>$.getJSON()：发出GET请求，读取一个JSON文件。</li>
+  <li>$.post()：发出POST请求。</li>
+  <li>$.fn.load()：读取一个html文件，并将其放入当前元素之中。</li>
+</ul>
+
+<p>一般来说，这些简便方法依次接受三个参数：url、数据、成功时的回调函数。</p>
+
+<p><strong>（1）$.get()，$.post()</strong></p>
+
+<p>这两个方法分别对应HTTP的GET方法和POST方法。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s1">'/data/people.html'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">html</span><span class="p">){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#target'</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/data/save'</span><span class="p">,</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Rebecca'</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">resp</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">resp</span><span class="p">));</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>get方法和post方法的参数相同，第一个参数是服务器网址，该参数是必需的，其他参数都是可选的。第二个参数是发送给服务器的数据，第三个参数是操作成功后的回调函数。</p>
+
+<p>上面的post方法对应的ajax写法如下。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'/data/save'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Rebecca'</span><span class="p">},</span>
+    <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+    <span class="na">success</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">resp</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">resp</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></figure>
+
+<p><strong>（2）$.getJSON()</strong></p>
+
+<p>ajax方法的另一个简便写法是getJSON方法。当服务器端返回JSON格式的数据，可以用这个方法代替$.ajax方法。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">'url/to/json'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>上面的代码等同于下面的写法。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="s2">"json"</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'/url/to/data'</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+  <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></figure>
+
+<p><strong>（3）$.getScript()</strong></p>
+
+<p>$.getScript方法用于从服务器端加载一个脚本文件。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">getScript</span><span class="p">(</span><span class="s1">'/static/js/myScript.js'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">functionFromMyScript</span><span class="p">();</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>上面代码先从服务器加载myScript.js脚本，然后在回调函数中执行该脚本提供的函数。</p>
+
+<p>getScript的回调函数接受三个参数，分别是脚本文件的内容，HTTP响应的状态信息和ajax对象实例。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">getScript</span><span class="p">(</span> <span class="s2">"ajax/test.js"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">textStatus</span><span class="p">,</span> <span class="nx">jqxhr</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">data</span> <span class="p">);</span> <span class="c1">// test.js的内容</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">textStatus</span> <span class="p">);</span> <span class="c1">// Success</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">jqxhr</span><span class="p">.</span><span class="nx">status</span> <span class="p">);</span> <span class="c1">// 200</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>getScript是ajax方法的简便写法，因此返回的是一个deferred对象，可以使用deferred接口。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">jQuery</span><span class="p">.</span><span class="nx">getScript</span><span class="p">(</span><span class="s2">"/path/to/myscript.js"</span><span class="p">)</span>
+	<span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="c1">// ...</span>
+	<span class="p">})</span>
+	<span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="c1">// ...</span>
+<span class="p">});</span></code></pre></figure>
+
+<p><strong>（4）$.fn.load()</strong></p>
+
+<p>$.fn.load不是jQuery的工具方法，而是定义在jQuery对象实例上的方法，用于获取服务器端的HTML文件，将其放入当前元素。由于该方法也属于ajax操作，所以放在这里一起讲。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'#newContent'</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="s1">'/foo.html'</span><span class="p">);</span></code></pre></figure>
+
+<p>$.fn.load方法还可以指定一个选择器，将远程文件中匹配选择器的部分，放入当前元素，并指定操作完成时的回调函数。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'#newContent'</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="s1">'/foo.html #myDiv h1:first'</span><span class="p">,</span>
+	<span class="kd">function</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'内容更新！'</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>上面代码只加载foo.html中匹配“#myDiv h1:first”的部分，加载完成后会运行指定的回调函数。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#main-menu a'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+   <span class="nx">$</span><span class="p">(</span><span class="s1">'#main'</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">href</span> <span class="o">+</span> <span class="s1">' #main *'</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<p>上面的代码将指定网页中匹配“#main *”，加载入当前的main元素。星号表示匹配main元素包含的所有子元素，如果不加这个星号，就会加载整个main元素（包括其本身），导致一个main元素中还有另一个main元素。</p>
+
+<p>load方法可以附加一个字符串或对象作为参数，一起向服务器提交。如果是字符串，则采用GET方法提交；如果是对象，则采用POST方法提交。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">$</span><span class="p">(</span> <span class="s2">"#feeds"</span> <span class="p">).</span><span class="nx">load</span><span class="p">(</span> <span class="s2">"feeds.php"</span><span class="p">,</span> <span class="p">{</span> <span class="na">limit</span><span class="p">:</span> <span class="mi">25</span> <span class="p">},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">"已经载入"</span> <span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<p>上面代码将<code class="highlighter-rouge">{ limit: 25 }</code>通过POST方法向服务器提交。</p>
+
+<p>load方法的回调函数，可以用来向用户提示操作已经完成。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#main-menu a'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+ 
+   <span class="nx">$</span><span class="p">(</span><span class="s1">'#main'</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">href</span> <span class="o">+</span> <span class="s1">' #main *'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">responseText</span><span class="p">,</span> <span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">'success'</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nx">$</span><span class="p">(</span><span class="s1">'#notification-bar'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">'加载成功！'</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="nx">$</span><span class="p">(</span><span class="s1">'#notification-bar'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">'出错了！'</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">});</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<h3 id="ajax事件">Ajax事件</h3>
+
+<p>jQuery提供以下一些方法，用于指定特定的AJAX事件的回调函数。</p>
+
+<ul>
+  <li>.ajaxComplete()：ajax请求完成。</li>
+  <li>.ajaxError()：ajax请求出错。</li>
+  <li>.ajaxSend()：ajax请求发出之前。</li>
+  <li>.ajaxStart()：第一个ajax请求开始发出，即没有还未完成ajax请求。</li>
+  <li>.ajaxStop()：所有ajax请求完成之后。</li>
+  <li>.ajaxSuccess()：ajax请求成功之后。</li>
+</ul>
+
+<p>下面是示例。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'#loading_indicator'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">ajaxStart</span><span class="p">(</span><span class="kd">function</span> <span class="p">(){</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">show</span><span class="p">();})</span>
+<span class="p">.</span><span class="nx">ajaxStop</span><span class="p">(</span><span class="kd">function</span> <span class="p">(){</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">hide</span><span class="p">();});</span>
+</code></pre></div></div>
+
+<p>下面是处理Ajax请求出错（返回404或500错误）的例子。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ajaxError</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="返回值">返回值</h3>
+
+<p>ajax方法返回的是一个deferred对象，可以用then方法为该对象指定回调函数（详细解释参见《deferred对象》一节）。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'/data/people.json'</span><span class="p">,</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resp</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">people</span><span class="p">);</span>
+<span class="p">})</span></code></pre></figure>
+
+<h3 id="jsonp">JSONP</h3>
+
+<p>由于浏览器存在“同域限制”，ajax方法只能向当前网页所在的域名发出HTTP请求。但是，通过在当前网页中插入script元素（&lt;script&gt;），可以向不同的域名发出GET请求，这种变通方法叫做JSONP（JSON with Padding）。</p>
+
+<p>ajax方法可以发出JSONP请求，方法是在对象参数中指定dataType为JSONP。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'/data/search.jsonp'</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span><span class="na">q</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">},</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="s1">'jsonp'</span><span class="p">,</span>
+  <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#target'</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">'Results: '</span> <span class="o">+</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});)</span></code></pre></figure>
+
+<p>JSONP的通常做法是，在所要请求的URL后面加在回调函数的名称。ajax方法规定，如果所请求的网址以类似“callback=?”的形式结尾，则自动采用JSONP形式。所以，上面的代码还可以写成下面这样。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">'/data/search.jsonp?q=a&amp;callback=?'</span><span class="p">,</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#target'</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">'Results: '</span> <span class="o">+</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">);</span></code></pre></figure>
+
+<h3 id="文件上传">文件上传</h3>
+
+<p>假定网页有一个文件控件。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">id=</span><span class="s">"test-input"</span><span class="nt">&gt;</span>
+
+</code></pre></div></div>
+
+<p>下面就是如何使用Ajax上传文件。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#test-input'</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">formData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+
+<span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'file'</span><span class="p">,</span> <span class="nx">file</span><span class="p">);</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">'myserver/uploads'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="na">contentType</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">processData</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="nx">formData</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<p>上面代码是将文件作为表单数据发送。除此之外，也可以直接发送文件。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#test-input'</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">'myserver/uploads'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="na">contentType</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span>
+  <span class="na">processData</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="nx">file</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ul>
+  <li>David Walsh, <a href="http://davidwalsh.name/loading-scripts-jquery">Loading Scripts with jQuery</a></li>
+  <li>Nguyen Huu Phuoc, <a href="http://programer.tips/2014/09/best-jquery-practices.html">Best jQuery practices</a></li>
+</ul>
+
+
+</article>
+
+<div class="row">
+<div class="twelve columns">
+
+<h2>留言</h2>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jstutorial'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+</div>
+</div>
+
+<footer>
+<div class="row">
+<div class="twelve columns">
+	<p><a href="/introduction/license.html">版权声明</a> | last modified on 2014-01-12 </p>
+</div>
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43771063-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+

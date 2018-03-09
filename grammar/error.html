@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>错误处理机制 -- JavaScript 标准参考教程（alpha）</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/toc.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+<body>
+
+<header class="top-bar" id="header">
+
+<div class="fixed">
+
+<nav class="top-bar">
+<ul>
+<!-- Title Area -->
+	<li class="name has-dropdown">
+	<h1><a href="/">JavaScript 标准参考教程（alpha） </a></h1>
+		<ul class="dropdown">
+			
+			<li><a href="/#introduction">导论</a></li>
+			
+			<li><a href="/#grammar">语法</a></li>
+			
+			<li><a href="/#stdlib">标准库</a></li>
+			
+			<li><a href="/#oop">面向对象编程</a></li>
+			
+			<li><a href="/#advanced">语法专题</a></li>
+			
+			<li><a href="/#dom">DOM模型</a></li>
+			
+			<li><a href="/#bom">浏览器环境</a></li>
+			
+			<li><a href="/#htmlapi">Web API</a></li>
+			
+		</ul>
+	</li>
+</ul>
+
+<section>
+
+
+<ul class="left">
+<li class="divider"></li>
+<li class="has-dropdown"><a class="active" href="#"> 语法 </a><ul class="dropdown">
+
+
+
+
+
+
+
+<li><a href="/grammar/array.html">数组</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/grammar/basic.html">基本语法</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/grammar/conversion.html">数据类型转换</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="active"><a href="#">错误处理机制</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/grammar/function.html">函数</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/grammar/number.html">数值</a></li>
+
+
+
+
+
+<li><a href="/grammar/object.html">对象</a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="/grammar/operator.html">运算符</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/grammar/string.html">字符串</a></li>
+
+
+
+
+
+<li><a href="/grammar/style.html">JavaScript 编程风格</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/grammar/types.html">数据类型</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul></li>
+<li class="divider"></li>
+<li class="has-dropdown nav-3"><a href="#"> 错误处理机制</a><ul class="dropdown">
+</ul></li>
+</ul>
+
+
+<ul class="right">
+	<li class="divider"></li>
+	<li>
+		<a href="https://github.com/ruanyf/jstutorial" target="_blank">GitHub <i class="foundicon-edit"></i></a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">TOP <i class="foundicon-up-arrow"></i></a>
+	</li>
+</ul>
+
+</section>
+
+</nav>  
+</div>
+</header>
+
+
+<article class="bookPage">
+
+  <div class="row">
+    <div class="twelve columns">
+
+<h1> 错误处理机制 </h1>
+
+<aside class="right"><p>来自<a href="/">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p></aside>
+
+<div id="toc" class="panel callout radius">目录</div>
+
+
+<h2 id="error-实例对象">Error 实例对象</h2>
+
+<p>JavaScript 解析或运行时，一旦发生错误，引擎就会抛出一个错误对象。JavaScript 原生提供<code class="highlighter-rouge">Error</code>构造函数，所有抛出的错误都是这个构造函数的实例。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'出错了'</span><span class="p">);</span>
+<span class="nx">err</span><span class="p">.</span><span class="nx">message</span> <span class="c1">// "出错了"</span>
+</code></pre></div></div>
+
+<p>上面代码中，我们调用<code class="highlighter-rouge">Error</code>构造函数，生成一个实例对象<code class="highlighter-rouge">err</code>。<code class="highlighter-rouge">Error</code>构造函数接受一个参数，表示错误提示，可以从实例的<code class="highlighter-rouge">message</code>属性读到这个参数。抛出<code class="highlighter-rouge">Error</code>实例对象以后，整个程序就中断在发生错误的地方，不再往下执行。</p>
+
+<p>JavaScript 语言标准只提到，<code class="highlighter-rouge">Error</code>实例对象必须有<code class="highlighter-rouge">message</code>属性，表示出错时的提示信息，没有提到其他属性。大多数 JavaScript 引擎，对<code class="highlighter-rouge">Error</code>实例还提供<code class="highlighter-rouge">name</code>和<code class="highlighter-rouge">stack</code>属性，分别表示错误的名称和错误的堆栈，但它们是非标准的，不是每种实现都有。</p>
+
+<ul>
+  <li><strong>message</strong>：错误提示信息</li>
+  <li><strong>name</strong>：错误名称（非标准属性）</li>
+  <li><strong>stack</strong>：错误的堆栈（非标准属性）</li>
+</ul>
+
+<p>使用<code class="highlighter-rouge">name</code>和<code class="highlighter-rouge">message</code>这两个属性，可以对发生什么错误有一个大概的了解。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">': '</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">stack</code>属性用来查看错误发生时的堆栈。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">throwit</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">catchit</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">throwit</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span> <span class="c1">// print stack trace</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">catchit</span><span class="p">()</span>
+<span class="c1">// Error</span>
+<span class="c1">//    at throwit (~/examples/throwcatch.js:9:11)</span>
+<span class="c1">//    at catchit (~/examples/throwcatch.js:3:9)</span>
+<span class="c1">//    at repl:1:5</span>
+</code></pre></div></div>
+
+<p>上面代码中，错误堆栈的最内层是<code class="highlighter-rouge">throwit</code>函数，然后是<code class="highlighter-rouge">catchit</code>函数，最后是函数的运行环境。</p>
+
+<h2 id="原生错误类型">原生错误类型</h2>
+
+<p><code class="highlighter-rouge">Error</code>实例对象是最一般的错误类型，在它的基础上，JavaScript 还定义了其他6种错误对象。也就是说，存在<code class="highlighter-rouge">Error</code>的6个派生对象。</p>
+
+<h3 id="syntaxerror-对象">SyntaxError 对象</h3>
+
+<p><code class="highlighter-rouge">SyntaxError</code>对象是解析代码时发生的语法错误。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 变量名错误</span>
+<span class="kd">var</span> <span class="mi">1</span><span class="nx">a</span><span class="p">;</span>
+<span class="c1">// Uncaught SyntaxError: Invalid or unexpected token</span>
+
+<span class="c1">// 缺少括号</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s1">'hello'</span><span class="p">);</span>
+<span class="c1">// Uncaught SyntaxError: Unexpected string</span>
+</code></pre></div></div>
+
+<p>上面代码的错误，都是在语法解析阶段就可以发现，所以会抛出<code class="highlighter-rouge">SyntaxError</code>。第一个错误提示是“token 非法”，第二个错误提示是“字符串不符合要求”。</p>
+
+<h3 id="referenceerror-对象">ReferenceError 对象</h3>
+
+<p><code class="highlighter-rouge">ReferenceError</code>对象是引用一个不存在的变量时发生的错误。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 使用一个不存在的变量</span>
+<span class="nx">unknownVariable</span>
+<span class="c1">// Uncaught ReferenceError: unknownVariable is not defined</span>
+</code></pre></div></div>
+
+<p>另一种触发场景是，将一个值分配给无法分配的对象，比如对函数的运行结果或者<code class="highlighter-rouge">this</code>赋值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 等号左侧不是变量</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">()</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1">// Uncaught ReferenceError: Invalid left-hand side in assignment</span>
+
+<span class="c1">// this 对象不能手动赋值</span>
+<span class="k">this</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1">// ReferenceError: Invalid left-hand side in assignment</span>
+</code></pre></div></div>
+
+<p>上面代码对函数<code class="highlighter-rouge">console.log</code>的运行结果和<code class="highlighter-rouge">this</code>赋值，结果都引发了<code class="highlighter-rouge">ReferenceError</code>错误。</p>
+
+<h3 id="rangeerror-对象">RangeError 对象</h3>
+
+<p><code class="highlighter-rouge">RangeError</code>对象是一个值超出有效范围时发生的错误。主要有几种情况，一是数组长度为负数，二是<code class="highlighter-rouge">Number</code>对象的方法参数超出范围，以及函数堆栈超过最大值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 数组长度不得为负数</span>
+<span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">// Uncaught RangeError: Invalid array length</span>
+</code></pre></div></div>
+
+<h3 id="typeerror-对象">TypeError 对象</h3>
+
+<p><code class="highlighter-rouge">TypeError</code>对象是变量或参数不是预期类型时发生的错误。比如，对字符串、布尔值、数值等原始类型的值使用<code class="highlighter-rouge">new</code>命令，就会抛出这种错误，因为<code class="highlighter-rouge">new</code>命令的参数应该是一个构造函数。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="mi">123</span>
+<span class="c1">// Uncaught TypeError: number is not a func</span>
+
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">unknownMethod</span><span class="p">()</span>
+<span class="c1">// Uncaught TypeError: obj.unknownMethod is not a function</span>
+</code></pre></div></div>
+
+<p>上面代码的第二种情况，调用对象不存在的方法，也会抛出<code class="highlighter-rouge">TypeError</code>错误，因为<code class="highlighter-rouge">obj.unknownMethod</code>的值是<code class="highlighter-rouge">undefined</code>，而不是一个函数。</p>
+
+<h3 id="urierror-对象">URIError 对象</h3>
+
+<p><code class="highlighter-rouge">URIError</code>对象是 URI 相关函数的参数不正确时抛出的错误，主要涉及<code class="highlighter-rouge">encodeURI()</code>、<code class="highlighter-rouge">decodeURI()</code>、<code class="highlighter-rouge">encodeURIComponent()</code>、<code class="highlighter-rouge">decodeURIComponent()</code>、<code class="highlighter-rouge">escape()</code>和<code class="highlighter-rouge">unescape()</code>这六个函数。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">decodeURI</span><span class="p">(</span><span class="s1">'%2'</span><span class="p">)</span>
+<span class="c1">// URIError: URI malformed</span>
+</code></pre></div></div>
+
+<h3 id="evalerror-对象">EvalError 对象</h3>
+
+<p><code class="highlighter-rouge">eval</code>函数没有被正确执行时，会抛出<code class="highlighter-rouge">EvalError</code>错误。该错误类型已经不再使用了，只是为了保证与以前代码兼容，才继续保留。</p>
+
+<h3 id="总结">总结</h3>
+
+<p>以上这6种派生错误，连同原始的<code class="highlighter-rouge">Error</code>对象，都是构造函数。开发者可以使用它们，手动生成错误对象的实例。这些构造函数都接受一个函数，代表错误提示信息（message）。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">err1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'出错了！'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">err2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RangeError</span><span class="p">(</span><span class="s1">'出错了，变量超出有效范围！'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">err3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">'出错了，变量类型无效！'</span><span class="p">);</span>
+
+<span class="nx">err1</span><span class="p">.</span><span class="nx">message</span> <span class="c1">// "出错了！"</span>
+<span class="nx">err2</span><span class="p">.</span><span class="nx">message</span> <span class="c1">// "出错了，变量超出有效范围！"</span>
+<span class="nx">err3</span><span class="p">.</span><span class="nx">message</span> <span class="c1">// "出错了，变量类型无效！"</span>
+</code></pre></div></div>
+
+<h2 id="自定义错误">自定义错误</h2>
+
+<p>除了 JavaScript 原生提供的七种错误对象，还可以定义自己的错误对象。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">UserError</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span> <span class="o">||</span> <span class="s1">'默认信息'</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'UserError'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">UserError</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">();</span>
+<span class="nx">UserError</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">UserError</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>上面代码自定义一个错误对象<code class="highlighter-rouge">UserError</code>，让它继承<code class="highlighter-rouge">Error</code>对象。然后，就可以生成这种自定义类型的错误了。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nx">UserError</span><span class="p">(</span><span class="s1">'这是自定义的错误！'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="throw-语句">throw 语句</h2>
+
+<p><code class="highlighter-rouge">throw</code>语句的作用是手动中断程序执行，抛出一个错误。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'x 必须为正数'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Uncaught ReferenceError: x is not defined</span>
+</code></pre></div></div>
+
+<p>上面代码中，如果变量<code class="highlighter-rouge">x</code>小于<code class="highlighter-rouge">0</code>，就手动抛出一个错误，告诉用户<code class="highlighter-rouge">x</code>的值不正确，整个程序就会在这里中断执行。可以看到，<code class="highlighter-rouge">throw</code>抛出的错误就是它的参数，这里是一个<code class="highlighter-rouge">Error</code>实例。</p>
+
+<p><code class="highlighter-rouge">throw</code>也可以抛出自定义错误。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">UserError</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span> <span class="o">||</span> <span class="s1">'默认信息'</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'UserError'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">throw</span> <span class="k">new</span> <span class="nx">UserError</span><span class="p">(</span><span class="s1">'出错了！'</span><span class="p">);</span>
+<span class="c1">// Uncaught UserError {message: "出错了！", name: "UserError"}</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">throw</code>抛出的是一个<code class="highlighter-rouge">UserError</code>实例。</p>
+
+<p>实际上，<code class="highlighter-rouge">throw</code>可以抛出任何类型的值。也就是说，它的参数可以是任何值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 抛出一个字符串</span>
+<span class="k">throw</span> <span class="s1">'Error！'</span><span class="p">;</span>
+<span class="c1">// Uncaught Error！</span>
+
+<span class="c1">// 抛出一个数值</span>
+<span class="k">throw</span> <span class="mi">42</span><span class="p">;</span>
+<span class="c1">// Uncaught 42</span>
+
+<span class="c1">// 抛出一个布尔值</span>
+<span class="k">throw</span> <span class="kc">true</span><span class="p">;</span>
+<span class="c1">// Uncaught true</span>
+
+<span class="c1">// 抛出一个对象</span>
+<span class="k">throw</span> <span class="p">{</span>
+  <span class="na">toString</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'Error!'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="c1">// Uncaught {toString: ƒ}</span>
+</code></pre></div></div>
+
+<p>对于 JavaScript 引擎来说，遇到<code class="highlighter-rouge">throw</code>语句，程序就中止了。引擎会接收到<code class="highlighter-rouge">throw</code>抛出的信息，可能是一个错误实例，也可能是其他类型的值。</p>
+
+<h2 id="trycatch-结构">try…catch 结构</h2>
+
+<p>一旦发生错误，程序就中止执行了。JavaScript 提供了<code class="highlighter-rouge">try...catch</code>结构，允许对错误进行处理，选择是否往下执行。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'出错了!'</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Error: 出错了!</span>
+<span class="c1">//   at &lt;anonymous&gt;:3:9</span>
+<span class="c1">//   ...</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">try</code>代码块抛出错误（上例用的是<code class="highlighter-rouge">throw</code>语句），JavaScript 引擎就立即把代码的执行，转到<code class="highlighter-rouge">catch</code>代码块，或者说错误被<code class="highlighter-rouge">catch</code>代码块捕获了。<code class="highlighter-rouge">catch</code>接受一个参数，表示<code class="highlighter-rouge">try</code>代码块抛出的值。</p>
+
+<p>如果你不确定某些代码是否会报错，就可以把它们放在<code class="highlighter-rouge">try...catch</code>代码块之中，便于进一步对错误进行处理。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
+  <span class="nx">f</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 处理错误</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>上面代码中，如果函数<code class="highlighter-rouge">f</code>执行报错，就会进行<code class="highlighter-rouge">catch</code>代码块，接着对错误进行处理。</p>
+
+<p><code class="highlighter-rouge">catch</code>代码块捕获错误之后，程序不会中断，会按照正常流程继续执行下去。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="s2">"出错了"</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">111</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">222</span><span class="p">);</span>
+<span class="c1">// 111</span>
+<span class="c1">// 222</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">try</code>代码块抛出的错误，被<code class="highlighter-rouge">catch</code>代码块捕获后，程序会继续向下执行。</p>
+
+<p><code class="highlighter-rouge">catch</code>代码块之中，还可以再抛出错误，甚至使用嵌套的<code class="highlighter-rouge">try...catch</code>结构。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="nx">n</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">e</span> <span class="o">&lt;=</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="nx">e</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Uncaught 100</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">catch</code>代码之中又抛出了一个错误。</p>
+
+<p>为了捕捉不同类型的错误，<code class="highlighter-rouge">catch</code>代码块之中可以加入判断语句。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
+  <span class="nx">foo</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">EvalError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">RangeError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">catch</code>捕获错误之后，会判断错误类型（<code class="highlighter-rouge">EvalError</code>还是<code class="highlighter-rouge">RangeError</code>），进行不同的处理。</p>
+
+<h2 id="finally-代码块">finally 代码块</h2>
+
+<p><code class="highlighter-rouge">try...catch</code>结构允许在最后添加一个<code class="highlighter-rouge">finally</code>代码块，表示不管是否出现错误，都必需在最后运行的语句。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">cleansUp</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'出错了……'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'此行不会执行'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'完成清理工作'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">cleansUp</span><span class="p">()</span>
+<span class="c1">// 完成清理工作</span>
+<span class="c1">// Error: 出错了……</span>
+</code></pre></div></div>
+
+<p>上面代码中，由于没有<code class="highlighter-rouge">catch</code>语句块，所以错误没有捕获。执行<code class="highlighter-rouge">finally</code>代码块以后，程序就中断在错误抛出的地方。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">idle</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+    <span class="k">return</span> <span class="s1">'result'</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"FINALLY"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">idle</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">)</span>
+<span class="c1">// hello</span>
+<span class="c1">// FINALLY</span>
+<span class="c1">// "result"</span>
+</code></pre></div></div>
+
+<p>上面代码说明，<code class="highlighter-rouge">try</code>代码块没有发生错误，而且里面还包括<code class="highlighter-rouge">return</code>语句，但是<code class="highlighter-rouge">finally</code>代码块依然会执行。注意，只有在其执行完毕后，才会显示<code class="highlighter-rouge">return</code>语句的值。</p>
+
+<p>下面的例子说明，<code class="highlighter-rouge">return</code>语句的执行是排在<code class="highlighter-rouge">finally</code>代码之前，只是等<code class="highlighter-rouge">finally</code>代码执行完毕后才返回。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">countUp</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">countUp</span><span class="p">()</span>
+<span class="c1">// 0</span>
+<span class="nx">count</span>
+<span class="c1">// 1</span>
+</code></pre></div></div>
+
+<p>上面代码说明，<code class="highlighter-rouge">return</code>语句的<code class="highlighter-rouge">count</code>的值，是在<code class="highlighter-rouge">finally</code>代码块运行之前就获取了。</p>
+
+<p>下面是<code class="highlighter-rouge">finally</code>代码块用法的典型场景。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">openFile</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="nx">writeFile</span><span class="p">(</span><span class="nx">Data</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">handleError</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+  <span class="nx">closeFile</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>上面代码首先打开一个文件，然后在<code class="highlighter-rouge">try</code>代码块中写入文件，如果没有发生错误，则运行<code class="highlighter-rouge">finally</code>代码块关闭文件；一旦发生错误，则先使用<code class="highlighter-rouge">catch</code>代码块处理错误，再使用<code class="highlighter-rouge">finally</code>代码块关闭文件。</p>
+
+<p>下面的例子充分反映了<code class="highlighter-rouge">try...catch...finally</code>这三者之间的执行顺序。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="s1">'bug'</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// 这句原本会延迟到 finally 代码块结束再执行</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// 不会运行</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// 这句会覆盖掉前面那句 return</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// 不会运行</span>
+  <span class="p">}</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// 不会运行</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">f</span><span class="p">();</span>
+<span class="c1">// 0</span>
+<span class="c1">// 1</span>
+<span class="c1">// 3</span>
+
+<span class="nx">result</span>
+<span class="c1">// false</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">catch</code>代码块结束执行之前，会先执行<code class="highlighter-rouge">finally</code>代码块。</p>
+
+<p><code class="highlighter-rouge">catch</code>代码块之中，触发转入<code class="highlighter-rouge">finally</code>代码快的标志，不仅有<code class="highlighter-rouge">return</code>语句，还有<code class="highlighter-rouge">throw</code>语句。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="s1">'出错了！'</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'捕捉到内部错误'</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="nx">e</span><span class="p">;</span> <span class="c1">// 这句原本会等到finally结束再执行</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// 直接返回</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="nx">f</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 此处不会执行</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'caught outer "bogus"'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//  捕捉到内部错误</span>
+</code></pre></div></div>
+
+<p>上面代码中，进入<code class="highlighter-rouge">catch</code>代码块之后，一遇到<code class="highlighter-rouge">throw</code>语句，就会去执行<code class="highlighter-rouge">finally</code>代码块，其中有<code class="highlighter-rouge">return false</code>语句，因此就直接返回了，不再会回去执行<code class="highlighter-rouge">catch</code>代码块剩下的部分了。</p>
+
+<h2 id="参考连接">参考连接</h2>
+
+<ul>
+  <li>Jani Hartikainen, <a href="http://davidwalsh.name/fix-javascript-errors">JavaScript Errors and How to Fix Them</a></li>
+</ul>
+
+
+</article>
+
+<div class="row">
+<div class="twelve columns">
+
+<h2>留言</h2>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jstutorial'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+</div>
+</div>
+
+<footer>
+<div class="row">
+<div class="twelve columns">
+	<p><a href="/introduction/license.html">版权声明</a> | last modified on 2013-12-07 </p>
+</div>
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43771063-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+

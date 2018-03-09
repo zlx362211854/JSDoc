@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>概述 -- JavaScript 标准参考教程（alpha）</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/toc.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+<body>
+
+<header class="top-bar" id="header">
+
+<div class="fixed">
+
+<nav class="top-bar">
+<ul>
+<!-- Title Area -->
+	<li class="name has-dropdown">
+	<h1><a href="/">JavaScript 标准参考教程（alpha） </a></h1>
+		<ul class="dropdown">
+			
+			<li><a href="/#introduction">导论</a></li>
+			
+			<li><a href="/#grammar">语法</a></li>
+			
+			<li><a href="/#stdlib">标准库</a></li>
+			
+			<li><a href="/#oop">面向对象编程</a></li>
+			
+			<li><a href="/#advanced">语法专题</a></li>
+			
+			<li><a href="/#dom">DOM模型</a></li>
+			
+			<li><a href="/#bom">浏览器环境</a></li>
+			
+			<li><a href="/#htmlapi">Web API</a></li>
+			
+		</ul>
+	</li>
+</ul>
+
+<section>
+
+
+<ul class="left">
+<li class="divider"></li>
+<li class="has-dropdown"><a class="active" href="#"> Web API </a><ul class="dropdown">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="active"><a href="#">概述</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/eventsource.html">Server-Sent Events</a></li>
+
+
+
+
+
+
+
+<li><a href="/htmlapi/file.html">文件和二进制数据的操作</a></li>
+
+
+
+
+
+<li><a href="/htmlapi/form.html">表单</a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/fullscreen.html">Fullscreen API：全屏操作</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/pagevisibility.html">Page Visibility API</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/requestanimationframe.html">requestAnimationFrame</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/svg.html">SVG 图像</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/webcomponents.html">Web Components</a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="/htmlapi/webspeech.html">Web Speech</a></li>
+
+
+
+
+
+
+
+<li><a href="/htmlapi/webworker.html">Web Worker</a></li>
+
+
+
+
+
+
+
+</ul></li>
+<li class="divider"></li>
+<li class="has-dropdown nav-3"><a href="#"> 概述</a><ul class="dropdown">
+</ul></li>
+</ul>
+
+
+<ul class="right">
+	<li class="divider"></li>
+	<li>
+		<a href="https://github.com/ruanyf/jstutorial" target="_blank">GitHub <i class="foundicon-edit"></i></a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">TOP <i class="foundicon-up-arrow"></i></a>
+	</li>
+</ul>
+
+</section>
+
+</nav>  
+</div>
+</header>
+
+
+<article class="bookPage">
+
+  <div class="row">
+    <div class="twelve columns">
+
+<h1> 概述 </h1>
+
+<aside class="right"><p>来自<a href="/">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p></aside>
+
+<div id="toc" class="panel callout radius">目录</div>
+
+
+<h2 id="元素与变量名">元素与变量名</h2>
+
+<h3 id="id属性">id属性</h3>
+
+<p>由于历史原因，HTML元素的<code class="highlighter-rouge">id</code>属性的名字，会自动成为全局变量，指向该HTML元素。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// HTML元素为</span>
+<span class="c1">// &lt;div id="example"&gt;&lt;/div&gt;</span>
+
+<span class="nx">example</span> <span class="c1">// [object HTMLDivElement]</span>
+</code></pre></div></div>
+
+<p>上面代码中，有一个<code class="highlighter-rouge">id</code>属性等于<code class="highlighter-rouge">example</code>的<code class="highlighter-rouge">div</code>元素，结果就自动生成了全局变量<code class="highlighter-rouge">example</code>，指向这个<code class="highlighter-rouge">div</code>元素。</p>
+
+<p>如果已有同名全局变量，则<code class="highlighter-rouge">id</code>元素不会自动生成全局变量。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+<span class="kd">var</span> <span class="nx">example</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"example"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">example</span><span class="p">)</span> <span class="c1">// 1</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码中，已有全局变量<code class="highlighter-rouge">example</code>，这时<code class="highlighter-rouge">id</code>属性就不会自动变成全局变量。另一情况是，DOM生成以后，再对全局变量<code class="highlighter-rouge">example</code>赋值，这时也会覆盖<code class="highlighter-rouge">example</code>原来的值。</p>
+
+<p>由于这种原因，默认的全局变量名（比如，<code class="highlighter-rouge">history</code>、<code class="highlighter-rouge">location</code>、<code class="highlighter-rouge">navigator</code>等），最好不要设为<code class="highlighter-rouge">id</code>属性的名字。</p>
+
+<p>另外，由于原则上，网页之中不应该有同名<code class="highlighter-rouge">id</code>属性的HTML元素，所以，这种机制产生的全局变量不会重名。</p>
+
+<h3 id="name属性">name属性</h3>
+
+<p>由于历史原因，以下HTML元素的<code class="highlighter-rouge">name</code>属性，也会成为全局变量。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">&lt;applet&gt;</code></li>
+  <li><code class="highlighter-rouge">&lt;area&gt;</code></li>
+  <li><code class="highlighter-rouge">&lt;embed&gt;</code></li>
+  <li><code class="highlighter-rouge">&lt;form&gt;</code></li>
+  <li><code class="highlighter-rouge">&lt;frame&gt;</code></li>
+  <li><code class="highlighter-rouge">&lt;frameset&gt;</code></li>
+  <li><code class="highlighter-rouge">&lt;iframe&gt;</code></li>
+  <li><code class="highlighter-rouge">&lt;img&gt;</code></li>
+  <li><code class="highlighter-rouge">&lt;object&gt;</code></li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// HTML代码为</span>
+<span class="c1">// &lt;form name="myForm" /&gt;</span>
+
+<span class="nx">myForm</span> <span class="c1">// [object HTMLFormElement]</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">form</code>元素的<code class="highlighter-rouge">name</code>属性名<code class="highlighter-rouge">myForm</code>，自动成为全局变量<code class="highlighter-rouge">myForm</code>。</p>
+
+<p>如果<code class="highlighter-rouge">name</code>属性同名的HTML元素不止一个，或者某个元素的<code class="highlighter-rouge">id</code>属性与另一个元素的<code class="highlighter-rouge">name</code>属性同名，这时全局变量会指向一个类似数组的对象。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// HTML代码为</span>
+<span class="c1">// &lt;div id="myForm" /&gt;</span>
+<span class="c1">// &lt;form name="myForm" /&gt;</span>
+
+<span class="nx">myForm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// [object HTMLDivElement]</span>
+<span class="nx">myForm</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// [object HTMLFormElement]</span>
+</code></pre></div></div>
+
+<p>上面代码中，全局变量<code class="highlighter-rouge">myForm</code>的第一个成员指向<code class="highlighter-rouge">div</code>元素，第二个成员指向<code class="highlighter-rouge">form</code>元素。</p>
+
+<p>这些元素的<code class="highlighter-rouge">name</code>属性名，也会成为<code class="highlighter-rouge">document</code>对象的属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// HTML代码为&lt;img name="xx" /&gt;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">xx</span> <span class="o">===</span> <span class="nx">xx</span> <span class="c1">// true</span>
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">name</code>属性为<code class="highlighter-rouge">xx</code>的<code class="highlighter-rouge">img</code>元素，自动生成了全局变量<code class="highlighter-rouge">xx</code>和<code class="highlighter-rouge">document</code>对象的属性<code class="highlighter-rouge">xx</code>。</p>
+
+<p>如果有多个<code class="highlighter-rouge">name</code>属性相同的元素，那么<code class="highlighter-rouge">document</code>对象的该属性指向一个类似数组的对象（NodeList对象的实例）。</p>
+
+<p>这样设计的原意是，通过引用<code class="highlighter-rouge">document.elementName</code>就可以获得该元素。但是，由于这些属性是自动生成的，既不规范，也不利于除错，所以建议不要使用它们。</p>
+
+<p>另外，如果<code class="highlighter-rouge">iframe</code>元素有<code class="highlighter-rouge">name</code>属性或<code class="highlighter-rouge">id</code>属性，那么生成的全局变量，不是指向<code class="highlighter-rouge">iframe</code>元素节点，而是指向这个<code class="highlighter-rouge">iframe</code>代表的子页面<code class="highlighter-rouge">window</code>对象。</p>
+
+<p>除了自动成为<code class="highlighter-rouge">window</code>和<code class="highlighter-rouge">document</code>的属性，带有<code class="highlighter-rouge">id</code>或<code class="highlighter-rouge">name</code>属性的HTML元素，还会自动成为集合对象的属性。举例来说，如果有一个表单元素<code class="highlighter-rouge">&lt;form&gt;</code>。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">name=</span><span class="s">"myform"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>它会自动成为集合对象<code class="highlighter-rouge">document.forms</code>的属性。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">myforms</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="form-元素表单">Form 元素（表单）</h2>
+
+<p>表单主要用于收集用户的输入，送到服务器或者在前端处理。</p>
+
+<h3 id="选中表单元素">选中表单元素</h3>
+
+<p>如果<code class="highlighter-rouge">&lt;form&gt;</code>元素带有<code class="highlighter-rouge">name</code>或者<code class="highlighter-rouge">id</code>属性，这个元素节点会自动成为<code class="highlighter-rouge">window</code>和<code class="highlighter-rouge">document</code>的属性，并且可以从<code class="highlighter-rouge">document.forms</code>上取到。<code class="highlighter-rouge">&lt;form name="myForm"&gt;</code>节点用下面几种方法可以拿到。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">myForm</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">myForm</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">myForm</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">document.forms</code>返回一个类似数组的对象（<code class="highlighter-rouge">HTMLCollection</code>的实例），包含了当前页面中所有表单（<code class="highlighter-rouge">&lt;form&gt;</code>元素）。<code class="highlighter-rouge">HTMLCollection</code>的实例都可以使用某个节点的<code class="highlighter-rouge">id</code>和<code class="highlighter-rouge">name</code>属性，取到该节点。</p>
+
+<p>表单对象本身也是一个<code class="highlighter-rouge">HTMLCollection</code>对象的实例，它里面的各个子节点也可以用<code class="highlighter-rouge">id</code>属性、<code class="highlighter-rouge">name</code>属性或者索引值取到。举例来说，<code class="highlighter-rouge">myForm</code>表单的第一个子节点是<code class="highlighter-rouge">&lt;input type="text" name="address"&gt;</code>，它可以用下面的方法取到。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">myForm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">myForm</span><span class="p">.</span><span class="nx">address</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">myForm</span><span class="p">.</span><span class="nx">address</span>
+</code></pre></div></div>
+
+<p>表单节点都有一个<code class="highlighter-rouge">elements</code>属性，包含了当前表单的所有子元素，所以也可以用下面的方法取到<code class="highlighter-rouge">address</code>子节点。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">myForm</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">myForm</span><span class="p">.</span><span class="nx">elements</span><span class="p">.</span><span class="nx">address</span>
+</code></pre></div></div>
+
+<p>表单之中，会有多个元素共用同一个<code class="highlighter-rouge">name</code>属性的情况。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">name=</span><span class="s">"myForm"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label&gt;&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"method"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;label&gt;&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"method"</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;label&gt;&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"method"</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码中，三个单选框元素共用同一个<code class="highlighter-rouge">name</code>属性，这时如果使用这个<code class="highlighter-rouge">name</code>属性去引用子节点，返回的将是一个类似数组的对象。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">myForm</span><span class="p">.</span><span class="nx">elements</span><span class="p">.</span><span class="nx">method</span><span class="p">.</span><span class="nx">length</span> <span class="c1">// 3</span>
+</code></pre></div></div>
+
+<p>如果想知道，用户到底选中了哪一个子节点，就必须遍历所有的同名节点。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">methods</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">myForm</span><span class="p">.</span><span class="nx">elements</span><span class="p">.</span><span class="nx">method</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">result</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">methods</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">methods</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">checked</span><span class="p">)</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">methods</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="form-对象">Form 对象</h3>
+
+<p><code class="highlighter-rouge">&lt;form&gt;</code>元素对应的DOM节点是一个Form对象。这个对象除了上一小节提到的<code class="highlighter-rouge">elements</code>属性，还有以下属性，分别对应元素标签中的同名属性。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">action</code></li>
+  <li><code class="highlighter-rouge">encoding</code></li>
+  <li><code class="highlighter-rouge">method</code></li>
+  <li><code class="highlighter-rouge">target</code></li>
+</ul>
+
+<p>Form对象还有两个属性，可以指定事件的回调函数。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">onsubmit</code>：提交表单前调用，只要返回<code class="highlighter-rouge">false</code>，就会取消提交。可以在这个函数里面，校验用户的输入。该函数只会在用户提交表单时调用，脚本调用<code class="highlighter-rouge">submit()</code>方法是不会触发这个函数的。</li>
+  <li><code class="highlighter-rouge">onreset</code>：重置表单前调用，只要返回<code class="highlighter-rouge">false</code>，就会取消表单重置。该函数只能由真实的reset按钮触发，脚本调用<code class="highlighter-rouge">reset()</code>方法并不会触发这个函数。</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onreset</span><span class="o">=</span><span class="s2">"return confirm('你要重置表单吗？')"</span><span class="o">&gt;</span>
+  <span class="c">&lt;!--</span> <span class="p">...</span> <span class="o">--&gt;</span>
+  <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"reset"</span><span class="o">&gt;</span><span class="err">重置</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>Form对象的方法主要是下面两个。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">submit()</code>：将表单数据提交到服务器</li>
+  <li><code class="highlighter-rouge">reset()</code>：重置表单数据</li>
+</ul>
+
+<h3 id="表单控件对象">表单控件对象</h3>
+
+<p>表单包含了各种控件，每个控件都是一个对象。它们都包含了以下四个属性。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">type</code>：表示控件的类型，对于<code class="highlighter-rouge">&lt;input&gt;</code>元素、<code class="highlighter-rouge">&lt;button&gt;</code>元素等于这些标签的<code class="highlighter-rouge">type</code>属性，对于其他控件，<code class="highlighter-rouge">&lt;select&gt;</code>为<code class="highlighter-rouge">select-one</code>，<code class="highlighter-rouge">&lt;select multiple&gt;</code>为<code class="highlighter-rouge">select-multiple</code>，<code class="highlighter-rouge">&lt;textarea&gt;</code>为<code class="highlighter-rouge">textarea</code>。该属性只读。</li>
+  <li><code class="highlighter-rouge">form</code>：指向包含该控件的表单对象，如果该控件不包含在表单之中，则返回<code class="highlighter-rouge">null</code>。该属性只读。</li>
+  <li><code class="highlighter-rouge">name</code>：返回控件标签的<code class="highlighter-rouge">name</code>属性。该属性只读。</li>
+  <li><code class="highlighter-rouge">value</code>：返回或设置该控件的值，这个值会被表单提交到服务器。该属性可读写。
+才会
+<code class="highlighter-rouge">form</code>属性有一个特别的应用，就是在控件的事件回调函数里面，<code class="highlighter-rouge">this</code>指向事件所在的控件对象，所以<code class="highlighter-rouge">this.form</code>就指向控件所在的表单，<code class="highlighter-rouge">this.form.x</code>就指向其他控件元素，里面的<code class="highlighter-rouge">x</code>就是该控件的<code class="highlighter-rouge">name</code>属性或<code class="highlighter-rouge">id</code>属性的值。</li>
+</ul>
+
+<p>表单控件之中，只要是按钮，都有<code class="highlighter-rouge">onclick</code>属性，用来指定用户点击按钮时的回调函数；其他的控件一般都有<code class="highlighter-rouge">onchange</code>属性，控件值发生变化，并且该控件失去焦点时调用。单选框（Radio控件）和多选框（Checkbox控件）可以同时设置<code class="highlighter-rouge">onchange</code>和<code class="highlighter-rouge">onclick</code>属性。</p>
+
+<p>表单控件还有以下两个事件。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">focus</code>：得到焦点时触发</li>
+  <li><code class="highlighter-rouge">blur</code>：失去焦点时触发</li>
+</ul>
+
+<h3 id="select元素">Select元素</h3>
+
+<p><code class="highlighter-rouge">&lt;select&gt;</code>元素用来生成下拉列表。默认情况下，浏览器只显示一条选项，其他选项需要点击下拉按钮才会显示。<code class="highlighter-rouge">size</code>选项如果大于1，那么浏览器就会默认显示多个选项。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;select</span> <span class="na">size=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码指定默认显示三个选项，更多的选项需要点击下拉按钮才会显示。</p>
+
+<p><code class="highlighter-rouge">&lt;select&gt;</code>元素默认只能选中一个选项，如果想选中多个选项，必须指定<code class="highlighter-rouge">multiple</code>属性。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;select</span> <span class="na">multiple</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>用户选中或者取消一个下拉选项时，会触发<code class="highlighter-rouge">Select</code>对象的<code class="highlighter-rouge">change</code>事件，从而自动执行<code class="highlighter-rouge">onchange</code>监听函数。</p>
+
+<p><code class="highlighter-rouge">&lt;select&gt;</code>元素有一个<code class="highlighter-rouge">options</code>属性，返回一个类似数组的对象，包含了所有的<code class="highlighter-rouge">&lt;option&gt;</code>元素。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// HTML 代码为
+// <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"example"</span><span class="nt">&gt;</span>
+//   <span class="nt">&lt;option&gt;</span>1<span class="nt">&lt;/option&gt;</span>
+//   <span class="nt">&lt;option&gt;</span>2<span class="nt">&lt;/option&gt;</span>
+//   <span class="nt">&lt;option&gt;</span>3<span class="nt">&lt;/option&gt;</span>
+// <span class="nt">&lt;/select&gt;</span>
+
+var element = document.querySelector('#example');
+element.options.length
+// 3
+</code></pre></div></div>
+
+<p>上面代码中，<code class="highlighter-rouge">&lt;select&gt;</code>元素的<code class="highlighter-rouge">options</code>属性包含了三个<code class="highlighter-rouge">&lt;option&gt;</code>元素。</p>
+
+<p><code class="highlighter-rouge">options</code>属性可读写，可以通过设置<code class="highlighter-rouge">options.length</code>，控制向用户显示的下拉选项的值。将<code class="highlighter-rouge">options.length</code>设为0，可以不再显示任何下拉属性。将<code class="highlighter-rouge">options</code>里面某个位置的<code class="highlighter-rouge">Option</code>对象设为<code class="highlighter-rouge">null</code>，将等于移除这个选项，后面的<code class="highlighter-rouge">Option</code>对象会自动递补这个位置。</p>
+
+<p><code class="highlighter-rouge">Select</code>对象的<code class="highlighter-rouge">selectedIndex</code>属性，返回用户选中的第一个下拉选项的位置（从0开始）。如果返回<code class="highlighter-rouge">-1</code>，则表示用户没有选中任何选项。该属性可读写。对于单选的下拉列表，这个属性就可以得知用户的选择；对于多选的下拉列表，这个属性还不够，必须逐个轮询<code class="highlighter-rouge">options</code>属性，判断每个<code class="highlighter-rouge">Option</code>对象的<code class="highlighter-rouge">selected</code>属性是否为<code class="highlighter-rouge">true</code>。</p>
+
+<h3 id="option元素">Option元素</h3>
+
+<p><code class="highlighter-rouge">&lt;option&gt;</code>元素用于在下拉列表（<code class="highlighter-rouge">&lt;select&gt;</code>）中生成下拉选项。每个下拉选项就是一个<code class="highlighter-rouge">Option</code>对象，它有以下属性。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">selected</code>：返回一个布尔值，表示用户是否选中该选项。</li>
+  <li><code class="highlighter-rouge">text</code>：返回该下拉选项的显示的文本。该属性可读写，可用来显示向用户显示的文本。</li>
+  <li><code class="highlighter-rouge">value</code>：返回该下拉选项的值，即向服务器发送的那个值。该属性可读写。</li>
+  <li><code class="highlighter-rouge">defaultSelected</code>：返回一个布尔值，表示这个下拉选项是否默认选中。</li>
+</ul>
+
+<p>浏览器提供<code class="highlighter-rouge">Option</code>构造函数，用来生成下拉列表的选项对象。利用这个函数，可以用脚本生成下拉选项，然后放入<code class="highlighter-rouge">Select.options</code>对象里面，从而自动生成下拉列表。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Option</span><span class="p">(</span>
+  <span class="s1">'Hello World'</span><span class="p">,</span>  <span class="c1">// 显示的文本，即 text 属性</span>
+  <span class="s1">'myValue'</span><span class="p">,</span>  <span class="c1">// 向服务器发送的值，即 value 属性</span>
+  <span class="kc">false</span><span class="p">,</span>    <span class="c1">// 是否为默认选项，即 defaultSelected 属性</span>
+  <span class="kc">false</span>   <span class="c1">// 是否已经选中，即 selected 属性</span>
+<span class="p">);</span>
+
+<span class="c1">// 获取 Selector 对象</span>
+<span class="kd">var</span> <span class="nx">mySelector</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">myForm</span><span class="p">.</span><span class="nx">mySelector</span><span class="p">;</span>
+<span class="nx">mySelector</span><span class="p">.</span><span class="nx">options</span><span class="p">[</span><span class="nx">mySelector</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>上面代码在下拉列表的末尾添加了一个选项。从中可以看到，<code class="highlighter-rouge">Option</code>构造函数可以接受四个选项，对应<code class="highlighter-rouge">&lt;Option&gt;</code>对象的四个属性。</p>
+
+<p>注意，用脚本插入下拉选项完全可以用标准的DOM操作方法实现，比如<code class="highlighter-rouge">Document.create Element()</code>、<code class="highlighter-rouge">Node.insertBefore()</code>和<code class="highlighter-rouge">Node.removeChild()</code>等等。</p>
+
+<h2 id="image元素">image元素</h2>
+
+<h3 id="alt属性src属性">alt属性，src属性</h3>
+
+<p><code class="highlighter-rouge">alt</code>属性返回<code class="highlighter-rouge">image</code>元素的HTML标签的<code class="highlighter-rouge">alt</code>属性值，<code class="highlighter-rouge">src</code>属性返回<code class="highlighter-rouge">image</code>元素的HTML标签的<code class="highlighter-rouge">src</code>属性值。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 方法一：HTML5构造函数Image</span>
+<span class="kd">var</span> <span class="nx">img1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+<span class="nx">img1</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'image1.png'</span><span class="p">;</span>
+<span class="nx">img1</span><span class="p">.</span><span class="nx">alt</span> <span class="o">=</span> <span class="s1">'alt'</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">img1</span><span class="p">);</span>
+
+<span class="c1">// 方法二：DOM HTMLImageElement</span>
+<span class="kd">var</span> <span class="nx">img2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'img'</span><span class="p">);</span>
+<span class="nx">img2</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'image2.jpg'</span><span class="p">;</span>
+<span class="nx">img2</span><span class="p">.</span><span class="nx">alt</span> <span class="o">=</span> <span class="s1">'alt text'</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">img2</span><span class="p">);</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">images</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">src</span>
+<span class="c1">// image1.png</span>
+</code></pre></div></div>
+
+<h3 id="complete属性">complete属性</h3>
+
+<p>complete属性返回一个布尔值，true表示当前图像属于浏览器支持的图形类型，并且加载完成，解码过程没有出错，否则就返回false。</p>
+
+<h3 id="height属性width属性">height属性，width属性</h3>
+
+<p>这两个属性返回image元素被浏览器渲染后的高度和宽度。</p>
+
+<h3 id="naturalwidth属性naturalheight属性">naturalWidth属性，naturalHeight属性</h3>
+
+<p>这两个属性只读，表示image对象真实的宽度和高度。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">myImage</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'onload'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'My width is: '</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">naturalWidth</span><span class="p">);</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'My height is: '</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">naturalHeight</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<h2 id="table元素">table元素</h2>
+
+<p>表格有一些特殊的DOM操作方法。</p>
+
+<ul>
+  <li><strong>insertRow()</strong>：在指定位置插入一个新行（tr）。</li>
+  <li><strong>deleteRow()</strong>：在指定位置删除一行（tr）。</li>
+  <li><strong>insertCell()</strong>：在指定位置插入一个单元格（td）。</li>
+  <li><strong>deleteCell()</strong>：在指定位置删除一个单元格（td）。</li>
+  <li><strong>createCaption()</strong>：插入标题。</li>
+  <li><strong>deleteCaption()</strong>：删除标题。</li>
+  <li><strong>createTHead()</strong>：插入表头。</li>
+  <li><strong>deleteTHead()</strong>：删除表头。</li>
+</ul>
+
+<p>下面是使用JavaScript生成表格的一个例子。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'table'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">tbody</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'tbody'</span><span class="p">);</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tbody</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">rowcount</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">tbody</span><span class="p">.</span><span class="nx">insertRow</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="nx">tbody</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">insertCell</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="nx">tbody</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">insertCell</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="nx">tbody</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">insertCell</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="nx">tbody</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s1">'Row '</span> <span class="o">+</span> <span class="nx">rowcount</span> <span class="o">+</span> <span class="s1">', Cell 1'</span><span class="p">));</span>
+  <span class="nx">tbody</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">cells</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s1">'Row '</span> <span class="o">+</span> <span class="nx">rowcount</span> <span class="o">+</span> <span class="s1">', Cell 2'</span><span class="p">));</span>
+  <span class="nx">tbody</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">cells</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s1">'Row '</span> <span class="o">+</span> <span class="nx">rowcount</span> <span class="o">+</span> <span class="s1">', Cell 3'</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nx">table</span><span class="p">.</span><span class="nx">createCaption</span><span class="p">();</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">caption</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s1">'A DOM-Generated Table'</span><span class="p">));</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">table</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>这些代码相当易读，其中需要注意的就是<code class="highlighter-rouge">insertRow</code>和<code class="highlighter-rouge">insertCell</code>方法，接受一个表示位置的参数（从0开始的整数）。</p>
+
+<p><code class="highlighter-rouge">table</code>元素有以下属性：</p>
+
+<ul>
+  <li><strong>caption</strong>：标题。</li>
+  <li><strong>tHead</strong>：表头。</li>
+  <li><strong>tFoot</strong>：表尾。</li>
+  <li><strong>rows</strong>：行元素对象，该属性只读。</li>
+  <li><strong>rows.cells</strong>：每一行的单元格对象，该属性只读。</li>
+  <li><strong>tBodies</strong>：表体，该属性只读。</li>
+</ul>
+
+<h2 id="audio元素video元素">audio元素，video元素</h2>
+
+<p>audio元素和video元素加载音频和视频时，以下事件按次序发生。</p>
+
+<ul>
+  <li>loadstart：开始加载音频和视频。</li>
+  <li>durationchange：音频和视频的duration属性（时长）发生变化时触发，即已经知道媒体文件的长度。如果没有指定音频和视频文件，duration属性等于NaN。如果播放流媒体文件，没有明确的结束时间，duration属性等于Inf（Infinity）。</li>
+  <li>loadedmetadata：媒体文件的元数据加载完毕时触发，元数据包括duration（时长）、dimensions（大小，视频独有）和文字轨。</li>
+  <li>loadeddata：媒体文件的第一帧加载完毕时触发，此时整个文件还没有加载完。</li>
+  <li>progress：浏览器正在下载媒体文件，周期性触发。下载信息保存在元素的buffered属性中。</li>
+  <li>canplay：浏览器准备好播放，即使只有几帧，readyState属性变为CAN_PLAY。</li>
+  <li>canplaythrough：浏览器认为可以不缓冲（buffering）播放时触发，即当前下载速度保持不低于播放速度，readyState属性变为CAN_PLAY_THROUGH。</li>
+</ul>
+
+<p>除了上面这些事件，audio元素和video元素还支持以下事件。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>事件</th>
+      <th>触发条件</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>abort</td>
+      <td>播放中断</td>
+    </tr>
+    <tr>
+      <td>emptied</td>
+      <td>媒体文件加载后又被清空，比如加载后又调用load方法重新加载。</td>
+    </tr>
+    <tr>
+      <td>ended</td>
+      <td>播放结束</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>发生错误。该元素的error属性包含更多信息。</td>
+    </tr>
+    <tr>
+      <td>pause</td>
+      <td>播放暂停</td>
+    </tr>
+    <tr>
+      <td>play</td>
+      <td>暂停后重新开始播放</td>
+    </tr>
+    <tr>
+      <td>playing</td>
+      <td>开始播放，包括第一次播放、暂停后播放、结束后重新播放。</td>
+    </tr>
+    <tr>
+      <td>ratechange</td>
+      <td>播放速率改变</td>
+    </tr>
+    <tr>
+      <td>seeked</td>
+      <td>搜索操作结束</td>
+    </tr>
+    <tr>
+      <td>seeking</td>
+      <td>搜索操作开始</td>
+    </tr>
+    <tr>
+      <td>stalled</td>
+      <td>浏览器开始尝试读取媒体文件，但是没有如预期那样获取数据</td>
+    </tr>
+    <tr>
+      <td>suspend</td>
+      <td>加载文件停止，有可能是播放结束，也有可能是其他原因的暂停</td>
+    </tr>
+    <tr>
+      <td>timeupdate</td>
+      <td>网页元素的currentTime属性改变时触发。</td>
+    </tr>
+    <tr>
+      <td>volumechange</td>
+      <td>音量改变时触发（包括静音）。</td>
+    </tr>
+    <tr>
+      <td>waiting</td>
+      <td>由于另一个操作（比如搜索）还没有结束，导致当前操作（比如播放）不得不等待。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="tabindex属性">tabindex属性</h2>
+
+<p><code class="highlighter-rouge">tabindex</code>属性用来指定，当前HTML元素节点是否被tab键遍历，以及遍历的优先级。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">b1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"button1"</span><span class="p">);</span>
+
+<span class="nx">b1</span><span class="p">.</span><span class="nx">tabIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>如果<code class="highlighter-rouge">tabindex = -1</code>，tab键跳过当前元素。</p>
+
+<p>如果<code class="highlighter-rouge">tabindex = 0</code>，表示tab键将遍历当前元素。如果一个元素没有设置tabindex，默认值就是0。</p>
+
+<p>如果<code class="highlighter-rouge">tabindex &gt; 0</code>，表示tab键优先遍历。值越大，就表示优先级越大。</p>
+
+
+</article>
+
+<div class="row">
+<div class="twelve columns">
+
+<h2>留言</h2>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jstutorial'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+</div>
+</div>
+
+<footer>
+<div class="row">
+<div class="twelve columns">
+	<p><a href="/introduction/license.html">版权声明</a> | last modified on 2014-07-08 </p>
+</div>
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43771063-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+
